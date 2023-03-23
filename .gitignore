@@ -17,3 +17,5 @@ package.json
 .idea_modules
 bower_components
 jspm_packages
+package-lock.json
+package.json
