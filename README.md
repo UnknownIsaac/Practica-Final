@@ -1,12 +1,24 @@
-# Practica-Final
-Trabajo final Lenguaje de Marcas 1r DAM (duración 3 meses)
+# practica-final
 
-Tienda de ...
+## Project setup
+```
+npm install
+```
 
-## Languages & Frameworks
--------------------------
-###### Vue front end
-###### Node for JRE (Web Server)
-###### AWS server to run the server on the cloud
-###### HTML for content
-###### CSS style
+### Compiles and hot-reloads for development
+```
+npm run serve
+```
+
+### Compiles and minifies for production
+```
+npm run build
+```
+
+### Lints and fixes files
+```
+npm run lint
+```
+
+### Customize configuration
+See [Configuration Reference](https://cli.vuejs.org/config/).
