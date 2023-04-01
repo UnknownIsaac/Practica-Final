@@ -4,10 +4,11 @@
   "description": "Proyecto final de Lenguaje de Marcas: Web de una Tienda con Front-end y Back-end (Vue, HTML, CSS y Node)",
   "private": true,
   "scripts": {
+    "start": "node index.js",
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    ""
+    "build": "vue-cli-service build"
   },
+
   "dependencies": {
     "core-js": "^3.8.3",
     "vue": "^3.2.13",
