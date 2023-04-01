@@ -1,11 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Clientes>
     <Cliente>
-        <Nombre></Nombre>
+        <ID></ID>
+        <UserName></UserName>
+        <Name></Name>
         <Telefono></Telefono>
         <Direccion></Direccion>
+        <Password></Password>
     </Cliente>
 
-
-
+    <Cliente>
+        <ID></ID>
+        <UserName></UserName>
+        <Name></Name>
+        <Telefono></Telefono>
+        <Direccion></Direccion> 
+        <Password></Password>
+    </Cliente>
+    
 </Clientes>
