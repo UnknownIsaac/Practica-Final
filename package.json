@@ -1,6 +1,7 @@
 {
   "name": "practica-final",
   "version": "0.1.0",
+  "description": "Proyecto final de Lenguaje de Marcas: Web de una Tienda con Front-end y Back-end (Vue, HTML, CSS y Node)",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
