@@ -1,24 +1,10 @@
-# practica-final
+# Tienda: Chen & Isaac
 
-## Project setup
-```
-npm install
-```
+#### Front-end
+Javascript, Vue, HTML, CSS
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+#### API
+Rest Node
 
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+#### Back-end
+Javascript, node, XML
