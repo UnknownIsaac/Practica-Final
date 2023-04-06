@@ -1,0 +1,11 @@
+* {
+    margin: 0;
+}
+
+body {
+    background-color: antiquewhite;
+}
+.nameEmpresa {
+text-align: center;
+    text-shadow: 10px 10px 10px;
+}
