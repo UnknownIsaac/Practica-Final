@@ -1,16 +1,16 @@
 <template>
   <div id="app">
     <div id="nav">
-      <h1 id="header">Store IC(Information and Communication)</h1>
+      <h1 id="header">Store IC</h1>
       <nav>
         <ul>
           <li><router-link to="/">Home</router-link></li>
           <li><router-link to="/about">About us</router-link></li>
           <li> <router-link to="/Productos">Products</router-link></li>
           <li> <router-link to="/Contact">Contact with us</router-link></li>
+          <li><a href=""><img id="log" src="..\img\log.png" alt="?"></a></li>
         </ul>
       </nav>
-      
     </div>
     <transition appear name="animate__animated router-animation" enter-active-class="animate__fadeInUp"
       leave-active-class="animate__fadeOutDown">
@@ -30,40 +30,54 @@
   color: #2c3e50;
 }
 
-#nav{
+#nav {
   background-color: #333;
-	color: #fff;
-	padding: 20px;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
+  color: #fff;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   box-shadow: 10px 0px 10px;
 }
 
 nav ul {
-	list-style: none;
-	margin: 0;
-	padding: 0;
-	display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+
+}
+
+#log {
+  width: 2rem;
+  border-radius: 60%;
 }
 
 nav li {
-	margin: 0 10px;
+  font-size: 20px;
+  margin: 0 10px;
 }
 
 nav a {
-	color: #e5dfdf;
-	text-decoration: none;
+  color: #e5dfdf;
+  text-decoration: none;
 }
+
 #nav a.router-link-exact-active {
   color: #42b928;
 }
+
 body {
-	margin: 0;
-	padding: 0;
-	font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
 }
+
 * {
-	box-sizing: border-box;
+  box-sizing: border-box;
 }
-</style>
+
+button {
+  color: black;
+  background-color: green;
+}</style>
