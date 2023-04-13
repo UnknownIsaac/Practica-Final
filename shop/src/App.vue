@@ -1,18 +1,17 @@
 <template>
   <div id="app">
     <div id="nav">
-    <ul>
-      <li><router-link to="/">Home</router-link></li>
-      <li><router-link to="/about">About</router-link></li> 
-    </ul>
+      <nav>
+        <ul>
+          <li><router-link to="/">Home</router-link></li>
+          <li><router-link to="/about">About us</router-link></li>
+          <li> <router-link to="/Products">Products</router-link></li>
+          <li> <router-link to="/Contact">Contact</router-link></li>
+        </ul>
+      </nav>
     </div>
-    <transition
-
-      appear
-      name="animate__animated router-animation"
-      enter-active-class="animate__fadeInUp"
-      leave-active-class="animate__fadeOutDown"
-    >
+    <transition appear name="animate__animated router-animation" enter-active-class="animate__fadeInUp"
+      leave-active-class="animate__fadeOutDown">
       <router-view />
     </transition>
   </div>
@@ -34,7 +33,7 @@
   padding: 30px;
 }
 
-#nav ul {
+#nav ul {
   display: block;
 }
 
