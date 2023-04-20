@@ -1,14 +1,13 @@
 <template>
   <div id="app">
     <div id="nav">
-      <h1 id="header">Store IC</h1>
+      <h1 id="header"><router-link to="/">IC Store</router-link></h1>
       <nav>
         <ul>
           <li><router-link to="/">Home</router-link></li>
           <li><router-link to="/about">About us</router-link></li>
           <li> <router-link to="/Productos">Products</router-link></li>
-          <li> <router-link to="/Contact">Contact with us</router-link></li>
-          <li><a href=""><img id="log" src="..\img\log.png" alt="?"></a></li>
+          <li><router-link to="/Log"><a href=""><img id="log" src="..\img\log.png" alt="?"></a></router-link></li>
         </ul>
       </nav>
     </div>
@@ -46,6 +45,7 @@ nav ul {
   padding: 0;
   display: flex;
 
+
 }
 
 #log {
@@ -54,8 +54,8 @@ nav ul {
 }
 
 nav li {
-  font-size: 20px;
-  margin: 0 10px;
+  font-size: 1rem;
+  margin: 0 10px -20px;
 }
 
 nav a {
@@ -78,6 +78,14 @@ body {
 }
 
 button {
-  color: black;
-  background-color: green;
-}</style>
+
+}
+
+#header {
+  color: #42b928;
+  font-size: 150%;
+}
+
+
+</style>
+
