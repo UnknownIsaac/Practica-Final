@@ -19,23 +19,17 @@
             </tr>
         </table>
         <button type="primary" @click="SignUp()">Sign up</button>
-        <button type="button" @click="HaveAcc()">Have a account?</button>
+        <button type="button" @click="$router.push('Acc')">Have a account?</button>
     </div>
 </template>
 
 <script>
-import { RouterLink } from 'vue-router';
-
-
 
 export default {
     name: 'Log',
     method: {
-        HaveAcc () {
-            <router-link to="/Acc">HaveAcc</router-link>
-        }
+      
     } 
-    
 };
 
 

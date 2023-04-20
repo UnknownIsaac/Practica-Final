@@ -1,12 +1,12 @@
 <template>
   <div id="app">
     <div id="nav">
-      <h1 id="header"><router-link to="/">IC Store</router-link></h1>
+      <h1 id="header"><router-link to="/"><img id="log" src="..\img\shopLogo.png" alt="?">    IC Store</router-link></h1>
       <nav>
         <ul>
-          <li><router-link to="/">Home</router-link></li>
           <li><router-link to="/about">About us</router-link></li>
           <li> <router-link to="/Productos">Products</router-link></li>
+          <li> <router-link to="/Cart"><a href=""><img id="log" src="..\img\cart.png" alt="?"></a></router-link></li>
           <li><router-link to="/Log"><a href=""><img id="log" src="..\img\log.png" alt="?"></a></router-link></li>
         </ul>
       </nav>
