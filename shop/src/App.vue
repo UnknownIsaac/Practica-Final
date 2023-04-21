@@ -77,10 +77,6 @@ body {
   box-sizing: border-box;
 }
 
-button {
-
-}
-
 #header {
   color: #42b928;
   font-size: 150%;
