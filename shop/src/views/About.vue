@@ -10,3 +10,7 @@ export default {
     name: 'About'
 }
 </script>
+<!-- CSS -->
+<style>
+    
+</style>
