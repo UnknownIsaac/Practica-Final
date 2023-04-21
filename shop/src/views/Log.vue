@@ -1,49 +1,35 @@
 <template>
-    <div class="log">
+    <div class="acc">
         <h1>Log page</h1> 
         <p>Welcome</p> 
        
         <table border="1rem" align="center">
-            <th colspan="2">Registration</th>
+            <th colspan="2">Log In</th>
             <tr>
                 <td>User name: </td>
-                <td><input type="UserName" placeholder="Your User name"></td>
+                <td><input id="UserName"></td>
             </tr>
             <tr>
                 <td>Password</td>
-                <td><input type="Password" placeholder="Password"></td>
-            </tr>
-            <tr>
-                <td>Repeat Password</td>
-                <td><input type="Password" placeholder="Repeate your pass again"></td>
+                <td><input type="Password"></td>
             </tr>
         </table>
-        <button type="primary" @click="SignUp()">Sign up</button>
-        <button type="button" @click="$router.push('Acc')">Have a account?</button>
+        <button>Log in</button>
+        
     </div>
 </template>
 
 <script>
-
 export default {
     name: 'Log',
-    method: {
-      
-    } 
 };
-
-
-function SignUp(){
+methods: {
 
 }
-
-
-
 </script>
 <!-- CSS -->
 <style>
     #UserName{
         color: green;
     }
-    
 </style>
