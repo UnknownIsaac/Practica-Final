@@ -2,6 +2,7 @@
   <div id="app">
     <div id="nav">
       <h1 id="header"><router-link to="/"><img id="log" src="..\img\shopLogo.png" alt="?">    IC Store</router-link></h1>
+  
       <nav>
         <ul>
           <li><router-link to="/about">About us</router-link></li>
@@ -80,7 +81,12 @@ body {
 #header {
   color: #42b928;
   font-size: 150%;
+  text-decoration: none;
 }
+a:visited{color: white;}
+a:link{color: white;}
+a:hover{color: rgba(179, 177, 177, 0.281);}
+
 
 
 </style>
