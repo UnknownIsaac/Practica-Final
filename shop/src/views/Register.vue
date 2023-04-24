@@ -85,7 +85,18 @@ td {
   padding: 10px;
 }
 
-input[type="text"],
+input[type="text"]{
+  background-color: transparent;
+  border: none;
+  border-bottom: 2px solid #66fcf1;
+  color: #fff;
+  font-size: 18px;
+  margin-bottom: 20px;
+  outline: none;
+  padding: 10px;
+  transition: border-bottom 0.3s ease;
+  width: 100%;
+}
 input[type="password"] {
   background-color: transparent;
   border: none;
@@ -99,10 +110,6 @@ input[type="password"] {
   width: 100%;
 }
 
-input[type="text"]:focus,
-input[type="password"]:focus {
-  border-bottom: 2px solid #45a29e;
-}
 
 button[type="submit"] {
   background-color: #45a29e;
