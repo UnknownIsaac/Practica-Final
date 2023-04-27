@@ -86,7 +86,6 @@ body {
 a:visited{color: white;}
 a:link{color: white;}
 a:hover{color: rgba(179, 177, 177, 0.281);}
-a::after{color: red}
 
 
 
