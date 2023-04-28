@@ -1,95 +1,96 @@
 <template>
-    <div class="acc">
-        <h1>Log In</h1> 
+    
+        <div class="wrapper">
+         <div class="form-box">
+          <h2>LogIn</h2>
+          <form action="#">
+         
+            <div class="input-box">
+      
+                <input type="email" required>
+                <label>Email</label>
+              
 
-       
-        <table border="1rem" align="center">
-            <th colspan="2">Log In</th>
-            <tr>
-                <td>User name: </td>
-                <td><input id="UserName"></td>
-            </tr>
-            <tr>
-                <td>Password</td>
-                <td><input type="Password"></td>
-            </tr>
-        </table>
-        <button>Log in</button>
-        
-    </div>
+              
+            </div>
+
+            <div class="input-box">
+              <input type="password" required>
+              <label >Password</label>
+            </div>
+            <div class="remember-forgot">
+              <label><input type="checkbox">Remember me</label>
+              <a href="">Forgot Your Password</a>
+            </div>
+            <button type="submit" class="btn">LOG IN</button>
+            <div class="login-register">
+              <p>Don't have a account? <a href="" class="register-link">Register</a></p>
+            </div>
+          </form>
+
+        </div>
+   </div>
+  
 </template>
 
+
 <script>
+
 export default {
     name: 'Log',
 };
 methods: {
 
 }
+
 </script>
+
 <!-- CSS -->
 <style>
- .log {
-  background-color: #f2f2f2;
-  border: 1px solid #ccc;
-  padding: 20px;
-  font-family: Arial, sans-serif;
-  color: #333;
+.wrapper{
+
+  position: relative;
+  
+  width: 100%;
+  height: 440px;
+  background-color: transparent;
+  border: 2px solid rgba(blue);
+  border-radius: 20px;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 0 30px rgba(0,0,0,.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.wrapper .form-box{
+  width: 50%;
+  padding: 40px;
+}
+.form-box h2{
+  font-size: 2em;
+  color: black;
+  position: relative;
   text-align: center;
-  margin-top: 50px;
-  width: 400px;
-  margin-left: auto;
-  margin-right: auto;
+  align-items: center;
 }
-
-.log h1 {
-  font-size: 32px;
-  margin-top: 0;
+.input-box{
+  position: relative;
+  width: 100%;
+  height: 50px;
+  border-bottom: 2px solid grey;
+  margin: 30px 0
 }
-
-.log p {
-  font-size: 20px;
-}
-
-.log table {
-  border-collapse: collapse;
-  margin-top: 30px;
-  margin-bottom: 30px;
-}
-
-.log td {
-  padding: 10px;
-}
-
-.log td:first-child {
-  text-align: right;
-  font-weight: bold;
-}
-
-.log input[type="UserName"], .log input[type="Password"] {
-  border: none;
-  border-radius: 3px;
-  padding: 10px;
-  width: 200px;
-  font-size: 16px;
-  margin-left: 10px;
+.input-box label{
+  position: absolute;
+  top: 50%;
+  left: 5px;
+  transform: translateY(-50%);
+  font-size: 1ems;
+  color: grey;
+  font-weight: 500;
+  pointer-events: none;
 }
 
 
-
-.log button {
-  border: none;
-  border-radius: 3px;
-  padding: 10px 20px;
-  background-color: #2b9cff;
-  color: #fff;
-  font-size: 16px;
-  margin-top: 20px;
-  cursor: pointer;
-}
-
-.log button:hover {
-  background-color: #0077cc;
-}
 
 </style>
