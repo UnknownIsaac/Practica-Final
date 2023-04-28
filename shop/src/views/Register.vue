@@ -85,18 +85,7 @@ td {
   padding: 10px;
 }
 
-input[type="text"]{
-  background-color: transparent;
-  border: none;
-  border-bottom: 2px solid #66fcf1;
-  color: #fff;
-  font-size: 18px;
-  margin-bottom: 20px;
-  outline: none;
-  padding: 10px;
-  transition: border-bottom 0.3s ease;
-  width: 100%;
-}
+input[type="text"],
 input[type="password"] {
   background-color: transparent;
   border: none;
@@ -111,7 +100,7 @@ input[type="password"] {
 }
 
 
-button[type="submit"] {
+button[type="log in"] {
   background-color: #45a29e;
   border: none;
   border-radius: 50px;
