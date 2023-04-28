@@ -1,7 +1,8 @@
 <template>
   <div id="app">
+    <div id="header">
     <div id="nav">
-      <h1 id="header"><router-link to="/"><img id="log" src="..\img\shopLogo.png" alt="?">    IC Store</router-link></h1>
+      <h1 id="logo-header"><router-link to="/"><img id="logo" src="..\img\IC-logo.png" alt="?"></router-link></h1>
   
       <nav>
         <ul>
@@ -12,6 +13,7 @@
         </ul>
       </nav>
     </div>
+  </div>
     <transition appear name="animate__animated router-animation" enter-active-class="animate__fadeInUp"
       leave-active-class="animate__fadeOutDown">
       <router-view />
@@ -31,13 +33,12 @@
 }
 
 #nav {
-  background-color: #333;
+  background-color: #201f1f;
   color: #fff;
   padding: 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  box-shadow: 10px 0px 10px;
 }
 
 nav ul {
@@ -47,6 +48,11 @@ nav ul {
   display: flex;
 
 
+}
+
+#logo{
+  width: 4rem;
+  border-radius: 60%;
 }
 
 #log {
@@ -59,13 +65,15 @@ nav li {
   margin: 0 10px -20px;
 }
 
+
+
 nav a {
   color: #e5dfdf;
   text-decoration: none;
 }
 
 #nav a.router-link-exact-active {
-  color: #42b928;
+  color: red;
 }
 
 body {
@@ -79,16 +87,15 @@ body {
 }
 
 #header {
-  color: #42b928;
-  font-size: 150%;
+  box-shadow: 10px 0px 10px;
+}
+
+#logo-header {
+  margin-left: 5%;
   text-decoration: none;
+  font-style: italic;
 }
 a:visited{color: white;}
 a:link{color: white;}
 a:hover{color: rgba(179, 177, 177, 0.281);}
-a::after{color: red}
-
-
-
 </style>
-
