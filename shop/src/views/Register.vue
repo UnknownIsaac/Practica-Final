@@ -17,7 +17,8 @@
             </tr>
         </table>
         <v-btn classs="" @click="SignUp()">Sign up</v-btn>
-        <button type="button" @click="$router.push('Log')">Have a account?</button>
+        <br>
+        <p>Alredy got an account? <a @click="$router.push('Log')" class="login-link">Log in</a></p>
     </div>
 </template>
 
@@ -42,5 +43,13 @@ function SignUp(){
 <!-- CSS -->
 <style>
 
+.login-link {
+    color: #b12d2db8;
+    text-decoration: none;
+    font-size: 1.0rem;
+    font-weight: bold;    
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
 
 </style>
