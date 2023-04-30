@@ -2,7 +2,7 @@
     
         <div class="wrapper">
          <div class="form-box">
-          <img src="..\..\img\logimg.png" id="user-img" alt="">
+          <img src="..\..\img\logimg.png" id="user-img" alt="user-img">
           <transition appear name="animate__animated router-animation" enter-active-class="animate__zoomIn animate__delay-1s">
           <form action="#">
          
@@ -131,7 +131,7 @@ methods: {
 }
 
 #user-img{
-  margin-top: 9%;
+  margin-top: 7%;
   width: 6.25rem;
   height: 6.25rem;
   border-radius: 50%;
