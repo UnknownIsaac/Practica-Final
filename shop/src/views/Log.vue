@@ -2,7 +2,8 @@
     
         <div class="wrapper">
          <div class="form-box">
-          <h2>LogIn</h2>
+          <img src="..\..\img\logimg.png" id="user-img" alt="">
+          <transition appear name="animate__animated router-animation" enter-active-class="animate__zoomIn animate__delay-1s">
           <form action="#">
          
             <div class="input-box">
@@ -20,14 +21,13 @@
             </div>
             <div class="remember-forgot">
               <label><input type="checkbox">Remember me</label>
-              <a href="">Forgot Your Password</a>
             </div>
             <button type="submit" class="btn">LOG IN</button>
             <div class="login-register">
-              <p>Don't have a account? <a href="" class="register-link">Register</a></p>
+              <p>Don't have a account? <a @click="$router.push('Register')" class="register-link">Register</a></p>
             </div>
           </form>
-
+        </transition>
         </div>
    </div>
   
@@ -35,6 +35,7 @@
 
 
 <script>
+import "animate.css"; 
 
 export default {
     name: 'Log',
@@ -48,11 +49,9 @@ methods: {
 <!-- CSS -->
 <style>
 .wrapper{
-
   position: relative;
-  
   width: 100%;
-  height: 440px;
+  height: 700px;
   background-color: transparent;
   border: 2px solid rgba(blue);
   border-radius: 20px;
@@ -91,6 +90,54 @@ methods: {
   pointer-events: none;
 }
 
+.register-link{
+  color: #b12d2db8;
+    text-decoration: none;
+    font-size: 1.0rem;
+    font-weight: bold;    
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
 
+#forgot-passwd{
+  color: #b12d2db8;
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: bold;    
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
 
+.btn{
+  margin-top: 2%;
+  width: 25%;
+  height: 50px;
+  border: none;
+  outline: none;
+  background-color: #b12d2d;
+  color: white;
+  font-size: 1.2em;
+  font-weight: 550;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.btn:hover{
+  background-color: #b12d2dfe;
+  color: cornsilk;
+  box-shadow: 0 0 10px #b12d2d;
+  transition-delay: 0.2s;
+}
+
+#user-img{
+  margin-top: 9%;
+  width: 6.25rem;
+  height: 6.25rem;
+  border-radius: 50%;
+  position: absolute;
+  top: -50px;
+  left: calc(50% - 50px);
+  transition: all 0.3s ease-in-out;
+}
 </style>

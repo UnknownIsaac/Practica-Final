@@ -14,8 +14,7 @@
       </nav>
     </div>
   </div>
-    <transition appear name="animate__animated router-animation" enter-active-class="animate__fadeInUp"
-      leave-active-class="animate__fadeOutDown">
+    <transition appear name="animate__animated router-animation" enter-active-class="animate__fadeInUp">
       <router-view />
     </transition>
   </div>
