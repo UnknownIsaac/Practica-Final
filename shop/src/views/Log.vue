@@ -7,17 +7,11 @@
           <form action="#">
          
             <div class="input-box">
-      
-                <input type="email" required>
-                <label>Email</label>
-              
-
-              
+                <input style="float: left; border:0" type="email" required placeholder="Email">
             </div>
 
             <div class="input-box">
-              <input type="password" required>
-              <label >Password</label>
+              <input style="float: left; border:0" type="password" required placeholder="Password">
             </div>
             <div class="remember-forgot">
               <label><input type="checkbox">Remember me</label>
@@ -79,7 +73,7 @@ methods: {
   border-bottom: 2px solid grey;
   margin: 30px 0
 }
-.input-box label{
+.input-box bel{
   position: absolute;
   top: 50%;
   left: 5px;
@@ -139,5 +133,10 @@ methods: {
   top: -50px;
   left: calc(50% - 50px);
   transition: all 0.3s ease-in-out;
+}
+
+input{
+  height: 100%;
+  width: 100%;
 }
 </style>
