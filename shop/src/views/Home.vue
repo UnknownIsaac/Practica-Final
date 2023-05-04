@@ -1,7 +1,6 @@
 <template>
     <div class="home page">
         <p id="home-welcome">Welcome to our store</p>
-        <input id="item-search" type="search" placeholder="What are you looking for?">
     </div>
 </template>
 
