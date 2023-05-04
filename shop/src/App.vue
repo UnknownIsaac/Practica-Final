@@ -9,7 +9,7 @@
           <li><router-link to="/about">About us</router-link></li>
           <li> <router-link to="/Productos">Products</router-link></li>
           <li> <router-link to="/Cart"><img id="log" src="..\img\cart.png" alt="?"></router-link></li>
-          <li><router-link to="/Register"><img id="log" src="..\img\log.png" alt="?"></router-link></li>
+          <li><router-link to="/Log"><img id="log" src="..\img\log.png" alt="?"></router-link></li>
         </ul>
       </nav>
     </div>
