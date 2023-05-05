@@ -5,19 +5,24 @@
             <transition appear name="animate__animated router-animation"
                 enter-active-class="animate__zoomIn animate__delay-1s">
                 <form action="#">
-
                     <div class="input-box">
-                        <input style="float: left; border:0" type="email" required placeholder="Email">
+                        <input style="float: left; border:0" type="name" v-model="username" required placeholder="Username">
                     </div>
 
                     <div class="input-box">
-                        <input style="float: left; border:0" type="password" required placeholder="Password">
+                        <input style="float: left; border:0" type="email" v-model="email" required placeholder="Email">
                     </div>
 
                     <div class="input-box">
-                        <input style="float: left; border:0" type="repeat_password" required placeholder="Repeat Password">
+                        <input style="float: left; border:0" type="password" v-model="password" required
+                            placeholder="Password">
                     </div>
-                    <button type="submit" class="btn">Register</button>
+
+                    <div class="input-box">
+                        <input style="float: left; border:0" type="password" v-model="repeatPassword" required
+                            placeholder="Repeat Password">
+                    </div>
+                    <button type="submit" class="btn" @click="createUser()">Register</button>
                     <div class="login-register">
                         <p>Already have an account?<a @click="$router.push('Log')" class="register-link">Log In</a></p>
                     </div>
@@ -28,21 +33,42 @@
 </template>
 
 <script>
+import axios from 'axios';
 
 export default {
     name: 'Log',
-    method: {
-
+    data() {
+        return {
+            username: '',
+            email: '',
+            password: ''
+        };
+    },
+    methods: {
+        createUser() {
+            if (this.password !== this.repeatPassword) {
+                console.log('Passwords do not match');
+                return;
+            }
+            axios.post('http://localhost:3000/users', {
+                nombre: this.username,
+                email: this.email,
+                pass: this.password
+            }).then(response => {
+                console.log(response.data);
+                // handle response
+            }).catch(error => {
+                console.log(error);
+                // handle error
+            });
+            console.log('request body:', {
+                nombre: this.username,
+                email: this.email,
+                pass: this.password
+            });
+        }
     }
 };
-
-
-function SignUp() {
-
-}
-
-
-
 </script>
 
 <!-- CSS -->
@@ -147,4 +173,5 @@ function SignUp() {
 input {
     height: 100%;
     width: 100%;
-}</style>
+}
+</style>

@@ -30,13 +30,19 @@
 
 <script>
 import "animate.css"; 
+import axios from 'axios';
+
+const createUser = (username, email, password) => {
+  return axios.post('/api/users', { username, email, password });
+};
+
 
 export default {
     name: 'Log',
-};
-methods: {
 
-}
+
+};
+
 
 </script>
 

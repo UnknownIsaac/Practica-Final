@@ -3,7 +3,11 @@
     <div id="header">
     <div id="nav">
       <h1 id="logo-header"><router-link to="/"><img id="logo" src="..\img\IC-logo.png" alt="?"></router-link></h1>
-  
+      
+    
+      <div class="search">
+        <input type="search">
+      </div>
       <nav>
         <ul>
           <li><router-link to="/about">About us</router-link></li>
@@ -11,8 +15,10 @@
           <li> <router-link to="/Cart"><img id="log" src="..\img\cart.png" alt="?"></router-link></li>
           <li><router-link to="/Log"><img id="log" src="..\img\log.png" alt="?"></router-link></li>
         </ul>
+    
       </nav>
     </div>
+
   </div>
     <transition appear name="animate__animated router-animation" enter-active-class="animate__fadeInUp">
       <router-view />
@@ -93,6 +99,12 @@ body {
   margin-left: 5%;
   text-decoration: none;
   font-style: italic;
+}
+.search{
+  width: 300;
+  height: 100%;
+  border-color: aqua;
+  border-width: 10px;
 }
 a:visited{color: white;}
 a:link{color: white;}
