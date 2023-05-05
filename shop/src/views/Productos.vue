@@ -2,11 +2,13 @@
     <div class="product">
         <h1>Product Page</h1>
         <p>Welcome</p>
+      
         <ul>
             <li v-for="producto in Productos" :key="producto.id">
                 {{ producto.nombre }} - {{ producto.precio }}
             </li>
         </ul>
+
     </div>
 </template>
 
