@@ -22,6 +22,10 @@
                         <input style="float: left; border:0" type="password" v-model="repeatPassword" required
                             placeholder="Repeat Password">
                     </div>
+                        <!-- 添加条件判断和 <p> 标签 -->
+                            <div v-if="password !== repeatPassword">
+                        <p style="color: red;">Passwords do not match</p>
+                    </div>
                     <button type="submit" class="btn" @click="createUser()">Register</button>
                     <div class="login-register">
                         <p>Already have an account?<a @click="$router.push('Log')" class="register-link">Log In</a></p>
