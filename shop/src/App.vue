@@ -1,25 +1,23 @@
 <template>
   <div id="app">
     <div id="header">
-    <div id="nav">
-      <h1 id="logo-header"><router-link to="/"><img id="logo" src="..\img\IC-logo.png" alt="?"></router-link></h1>
-      
-    
-      <div class="search">
-        <input type="search">
-      </div>
-      <nav>
-        <ul>
-          <li><router-link to="/about">About us</router-link></li>
-          <li> <router-link to="/Productos">Products</router-link></li>
-          <li> <router-link to="/Cart"><img id="log" src="..\img\cart.png" alt="?"></router-link></li>
-          <li><router-link to="/Log"><img id="log" src="..\img\log.png" alt="?"></router-link></li>
-        </ul>
-    
-      </nav>
-    </div>
+      <div id="nav">
+        <h1 id="logo-header"><router-link to="/"><img id="logo" src="..\img\IC-logo.png" alt="?"></router-link></h1>
+        <div class="search">
+          <input type="search" placeholder="Looking for something?">
+        </div>
+        <nav>
+          <ul>
+            <li><router-link to="/about">About us</router-link></li>
+            <li> <router-link to="/Productos">Products</router-link></li>
+            <li> <router-link to="/Cart"><img id="log" src="..\img\cart.png" alt="?"></router-link></li>
+            <li><router-link to="/Log"><img id="log" src="..\img\log.png" alt="?"></router-link></li>
+          </ul>
 
-  </div>
+        </nav>
+      </div>
+
+    </div>
     <transition appear name="animate__animated router-animation" enter-active-class="animate__fadeInUp">
       <router-view />
     </transition>
@@ -55,7 +53,17 @@ nav ul {
 
 }
 
-#logo{
+.search input {
+  width: 400px;
+  height: 45px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  padding: 10px;
+
+}
+
+#logo {
   width: 4rem;
   border-radius: 60%;
 }
@@ -100,13 +108,23 @@ body {
   text-decoration: none;
   font-style: italic;
 }
-.search{
+
+.search {
   width: 300;
   height: 100%;
   border-color: aqua;
   border-width: 10px;
 }
-a:visited{color: white;}
-a:link{color: white;}
-a:hover{color: rgba(179, 177, 177, 0.281);}
+
+a:visited {
+  color: white;
+}
+
+a:link {
+  color: white;
+}
+
+a:hover {
+  color: rgba(179, 177, 177, 0.281);
+}
 </style>

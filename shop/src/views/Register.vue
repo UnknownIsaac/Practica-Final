@@ -19,12 +19,7 @@
                     </div>
 
                     <div class="input-box">
-                        <input style="float: left; border:0" type="password" v-model="repeatPassword" required
-                            placeholder="Repeat Password">
-                    </div>
-                        <!-- 添加条件判断和 <p> 标签 -->
-                            <div v-if="password !== repeatPassword">
-                        <p style="color: red;">Passwords do not match</p>
+                        <input style="float: left; border:0" type="password" v-model="repeatPassword" required  placeholder="Repeat Password">
                     </div>
                     <button type="submit" class="btn" @click="createUser()">Register</button>
                     <div class="login-register">
@@ -51,7 +46,7 @@ export default {
     methods: {
         createUser() {
             if (this.password !== this.repeatPassword) {
-                console.log('Passwords do not match');
+                alert('Passwords do not match');
                 return;
             }
             axios.post('http://localhost:3000/users', {
@@ -70,6 +65,7 @@ export default {
                 email: this.email,
                 pass: this.password
             });
+            this.$router.push('/log')
         }
     }
 };
