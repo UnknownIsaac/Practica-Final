@@ -1,11 +1,5 @@
 <template>
-    <transition appear name="animate__animated router-animation" enter-active-class="animate__zoomIn animate__delay-1s">
-        <select v-model="selectedCategory">
-            <option value="">All</option>
-            <option v-for="category in categories" :value="category">{{ category }}</option>
-        </select>
-    </transition>
-    <div class="product" @click="$router.push('Detail')">
+    <div class="productDetail">
         <div v-for="producto in filteredProductos" :key="producto.id" class="product-card">
             <!--   <img :src="producto.imagen" alt="Product Image" class="product-image" /> -->
             <h2 class="product-name">{{ producto.nombre }}</h2>
@@ -16,18 +10,13 @@
         </div>
     </div>
 </template>
-  
-  
+
 <script>
-import Cart from "./Cart.vue";
 import axios from "axios";
-import { push } from 'vue-router';
 
 export default {
-    name: "Productos",
-    components: {
-        Cart,
-    },
+    name: "Detail",
+
     data() {
         return {
             Productos: [],
@@ -43,7 +32,7 @@ export default {
     },
     methods: {
         product_detail() {
-            this.$route.push('Detail')
+            alert("Hello world")
         }
     },
     computed: {
@@ -73,8 +62,6 @@ export default {
     },
 };
 </script>
-
-
 <!-- CSS -->
 <style>
 .product {
@@ -162,3 +149,5 @@ select:focus {
     background-position: center right 15px;
 }
 </style>
+
+
