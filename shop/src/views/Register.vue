@@ -19,8 +19,7 @@
                     </div>
 
                     <div class="input-box">
-                        <input style="float: left; border:0" type="password" v-model="repeatPassword" required
-                            placeholder="Repeat Password">
+                        <input style="float: left; border:0" type="password" v-model="repeatPassword" required  placeholder="Repeat Password">
                     </div>
                     <button type="submit" class="btn" @click="createUser()">Register</button>
                     <div class="login-register">
@@ -47,7 +46,7 @@ export default {
     methods: {
         createUser() {
             if (this.password !== this.repeatPassword) {
-                console.log('Passwords do not match');
+                alert('Passwords do not match');
                 return;
             }
             axios.post('http://localhost:3000/users', {
@@ -66,6 +65,7 @@ export default {
                 email: this.email,
                 pass: this.password
             });
+            this.$router.push('/log')
         }
     }
 };
@@ -173,5 +173,6 @@ export default {
 input {
     height: 100%;
     width: 100%;
+    font-size: large;
 }
 </style>
