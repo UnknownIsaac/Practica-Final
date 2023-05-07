@@ -13,6 +13,11 @@
       <div>Total: {{ cartTotal }} $</div>
       <div><button @click="checkout">Checkout</button></div>
     </div>
+
+    <ul>
+      <li v-for="producto in productos" :key="producto.id">{{ producto.nombre }} - {{ producto.precio }}</li>
+    </ul>
+
   </div>
 </template>
 
@@ -24,7 +29,6 @@ export default {
       cartItems: []
     }
   },
-  methods: {
     addToCart(item) {
       this.cartItems.push(item)
     },
@@ -34,14 +38,11 @@ export default {
     checkout() {
       alert('Thank you for your purchase!')
       this.cartItems = []
-    }
-  },
-  computed: {
+    },
     cartTotal() {
       return this.cartItems.reduce((total, item) => total + item.precio, 0)
     }
   }
-}
 </script>
 
 <style>
