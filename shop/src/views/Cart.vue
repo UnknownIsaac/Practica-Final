@@ -1,39 +1,67 @@
 <template>
-    <div class="cart">
-      <h1>My Shopping Cart</h1>
-      <div class="cart-items">
-        <div class="cart-item" v-for="item in items" :key="item.id">
-          <img :src="item.image" alt="Product image">
-          <div class="item-details">
-            <h2>{{ item.name }}</h2>
-            <p>{{ item.description }}</p>
-            <p>Price: ${{ item.price }}</p>
-            <div class="item-quantity">
-              <button @click="decreaseQuantity(item)">-</button>
-              <p>{{ item.quantity }}</p>
-              <button @click="increaseQuantity(item)">+</button>
-            </div>
-            <button @click="removeItem(item)">Remove Item</button>
-          </div>
-        </div>
-      </div>
-      <div class="cart-summary">
-        <p>Total Items: {{ totalItems }}</p>
-        <p>Subtotal: ${{ subtotal }}</p>
-        <p>Tax: ${{ tax }}</p>
-        <p>Total: ${{ total }}</p>
-        <button>Checkout</button>
-      </div>
+  <div class="cart">
+    <h1>Shopping Cart</h1>
+    <ul>
+      <li v-for="(item, index) in cartItems" :key="index">
+        <div>{{ item.nombre }}</div>
+        <div>{{ item.precio }} $</div>
+        <div><button @click="removeItem(index)">Remove</button></div>
+      </li>
+    </ul>
+    <div v-if="cartItems.length === 0">Your cart is empty.</div>
+    <div v-else>
+      <div>Total: {{ cartTotal }} $</div>
+      <div><button @click="checkout">Checkout</button></div>
     </div>
-  </template>
-  
+  </div>
+</template>
 
 <script>
 export default {
-    name: 'Cart',
+  name: 'Cart',
+  data() {
+    return {
+      cartItems: []
+    }
+  },
+  methods: {
+    addToCart(item) {
+      this.cartItems.push(item)
+    },
+    removeItem(index) {
+      this.cartItems.splice(index, 1)
+    },
+    checkout() {
+      alert('Thank you for your purchase!')
+      this.cartItems = []
+    }
+  },
+  computed: {
+    cartTotal() {
+      return this.cartItems.reduce((total, item) => total + item.precio, 0)
+    }
+  }
 }
 </script>
-<!-- CSS -->
+
 <style>
-   
+.cart {
+  text-align: center;
+}
+
+
+button {
+  background-color: #009688;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 10px 20px;
+  transition: background-color 0.3s ease-in-out;
+}
+
+button:hover {
+  background-color: #00796b;
+}
 </style>
