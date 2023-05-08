@@ -3,7 +3,7 @@
         <option value="">All</option>
         <option v-for="category in categories" :value="category">{{ category }}</option>
     </select>
-    <div class="product" @click="gotoDetail">
+    <div class="product" @click="gotoDetail()">
         <div v-for="producto in filteredProductos" :key="producto.id" class="product-card">
             <!--   <img :src="producto.imagen" alt="Product Image" class="product-image" /> -->
             <h2 class="product-name">{{ producto.nombre }}</h2>
@@ -34,15 +34,9 @@ export default {
         };
     },
     methods: {
-        gotoDetail: () => {
-            $router.push('Detail');
+        gotoDetail(){
+            this.$router.push('Detail');
         }
-    },
-    methods: {
-        addToCart(item) {
-            this.cartItems.push(item);
-        },
-
     },
     computed: {
         filteredProductos() {
