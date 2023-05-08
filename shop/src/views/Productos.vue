@@ -1,11 +1,9 @@
 <template>
-    <transition appear name="animate__animated router-animation" enter-active-class="animate__zoomIn animate__delay-1s">
-        <select v-model="selectedCategory">
-            <option value="">All</option>
-            <option v-for="category in categories" :value="category">{{ category }}</option>
-        </select>
-    </transition>
-    <div class="product" @click="$router.push('Detail')">
+    <select v-model="selectedCategory">
+        <option value="">All</option>
+        <option v-for="category in categories" :value="category">{{ category }}</option>
+    </select>
+    <div class="product" @click="gotoDetail">
         <div v-for="producto in filteredProductos" :key="producto.id" class="product-card">
             <!--   <img :src="producto.imagen" alt="Product Image" class="product-image" /> -->
             <h2 class="product-name">{{ producto.nombre }}</h2>
@@ -36,15 +34,15 @@ export default {
         };
     },
     methods: {
+        gotoDetail: () => {
+            $router.push('Detail');
+        }
+    },
+    methods: {
         addToCart(item) {
             this.cartItems.push(item);
         },
 
-    },
-    methods: {
-        product_detail() {
-            this.$route.push('Detail')
-        }
     },
     computed: {
         filteredProductos() {
