@@ -29,7 +29,7 @@ export default {
         return {
             Productos: [],
             selectedCategory: "",
-            categories: [],
+            categorias: [],
         };
     },
     methods: {

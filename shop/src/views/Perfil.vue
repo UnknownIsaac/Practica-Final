@@ -1,11 +1,10 @@
 <template>
-    <div class="aboutUs">
-        <p>Your own Perfil page</p>
+    <div class="Perfil">
+        <p>Your own Pefil</p>
     </div>
 </template>
 
 <script>
-import axios from "axios";
 export default {
     name: 'Perfil'
 }

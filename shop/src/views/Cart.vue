@@ -17,7 +17,7 @@
     <ul>
       <li v-for="producto in productos" :key="producto.id">{{ producto.nombre }} - {{ producto.precio }}</li>
     </ul>
-
+    <button v-if="cartItems.length === 0" @click="goToProducto()">Let's pick something!</button>
   </div>
 </template>
 
@@ -29,20 +29,29 @@ export default {
       cartItems: []
     }
   },
-    addToCart(item) {
-      this.cartItems.push(item)
-    },
-    removeItem(index) {
-      this.cartItems.splice(index, 1)
-    },
-    checkout() {
-      alert('Thank you for your purchase!')
-      this.cartItems = []
-    },
-    cartTotal() {
-      return this.cartItems.reduce((total, item) => total + item.precio, 0)
-    }
+  addToCart(item) {
+    this.cartItems.push(item)
+  },
+  removeItem(index) {
+    this.cartItems.splice(index, 1)
+  },
+  checkout() {
+    alert('Thank you for your purchase!')
+    this.cartItems = []
+  },
+  cartTotal() {
+    return this.cartItems.reduce((total, item) => total + item.precio, 0)
   }
+  ,
+  methods: {
+    goToProducto() {
+      this.$router.push({
+        name: 'Product',
+      })
+    }
+  },
+
+}
 </script>
 
 <style>
