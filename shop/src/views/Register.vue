@@ -33,7 +33,6 @@
 
 <script>
 import axios from 'axios';
-
 export default {
     name: 'Log',
     data() {
@@ -60,12 +59,7 @@ export default {
                 console.log(error);
                 // handle error
             });
-            console.log('request body:', {
-                nombre: this.username,
-                email: this.email,
-                pass: this.password
-            });
-            this.$router.push('/log')
+            this.$router.push('/Log')
         }
     }
 };

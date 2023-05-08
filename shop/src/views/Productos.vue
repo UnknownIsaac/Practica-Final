@@ -3,8 +3,8 @@
         <option value="">All</option>
         <option v-for="category in categories" :value="category">{{ category }}</option>
     </select>
-    <div class="product" @click="gotoDetail()">
-        <div v-for="producto in filteredProductos" :key="producto.id" class="product-card">
+    <div class="product">
+        <div v-for="producto in filteredProductos" :key="producto.id" class="product-card" @click="gotoDetail(producto)">
             <!--   <img :src="producto.imagen" alt="Product Image" class="product-image" /> -->
             <h2 class="product-name">{{ producto.nombre }}</h2>
             <h2 class="product-name">{{ producto.categoria }}</h2>
@@ -19,7 +19,6 @@
 <script>
 import Cart from "./Cart.vue";
 import axios from "axios";
-import { push } from 'vue-router';
 
 export default {
     name: "Productos",
@@ -34,8 +33,11 @@ export default {
         };
     },
     methods: {
-        gotoDetail(){
-            this.$router.push('Detail');
+        gotoDetail(producto) {
+            this.$router.push({
+                name: 'Detail',
+                params: { id: producto.id }
+            });
         }
     },
     computed: {
