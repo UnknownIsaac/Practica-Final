@@ -44,7 +44,7 @@ router.post('/users', (req, res) => {
 app.post('/Log',(req,res)=>{
   const { email, password } = req.body;
   console.log('req.body:',req.body);
-  const sql = `select email,pass from usuario where email='${email}'`;
+  const sql = `select email,pass from usuario where email=${email}`;
   connection.query(sql,(error,results)=>{
     console.log('req.body:',results);
         if(error) {res.status(500); 

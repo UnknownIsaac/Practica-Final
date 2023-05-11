@@ -52,6 +52,7 @@ export default {
         console.log(error);
         // handle error
       });
+
     },
     goToRegister() {
       this.$router.push({
