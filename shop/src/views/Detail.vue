@@ -1,8 +1,8 @@
 <template>
     <div class="producto_Detail">
-      <h2>{{ selectedProduct.nombre }}</h2>
-      <p>{{ selectedProduct.descripcion }}</p>
-      <p>{{ selectedProduct.precio }} $</p>
+      <h2>{{ Producto.nombre }}</h2>
+      <p>{{ Producto.descripcion }}</p>
+      <p>{{ Producto.precio }} $</p>
       <button class="add-to-cart-button" @click="addToCart(selectedProduct)">Add to Cart</button>
     </div>
   </template>
@@ -14,19 +14,19 @@
     data() {
       return {
         selectedProduct: {},
-        Productos: []
+        Producto: {}
       };
     },
     computed: {
       selectedProduct() {
         const id = this.$route.params.id;
-        return this.Productos.find(p => p.id === id) || {};
+        return this.Producto.find(p => p.id === id) || {};
       }
     },
     created() {
-      axios.get('http://localhost:3000/data')
+      axios.get('http://localhost:3000/detail/'+this.$route.params.id)
         .then(response => {
-          this.Productos = response.data;
+          this.Producto = response.data[0];
         })
         .catch(error => {
           console.log(error);

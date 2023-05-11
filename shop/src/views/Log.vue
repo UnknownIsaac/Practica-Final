@@ -1,46 +1,66 @@
 <template>
-    
-        <div class="wrapper">
-         <div class="form-box">
-          <img src="..\..\img\logimg.png" id="user-img" alt="user-img">
-          <transition appear name="animate__animated router-animation" enter-active-class="animate__zoomIn animate__delay-1s">
-          <form action="#">
-         
-            <div class="input-box">
-                <input style="float: left; border:0" type="email" required placeholder="Email">
-            </div>
+  <div class="wrapper">
+    <div class="form-box">
+      <img src="..\..\img\logimg.png" id="user-img" alt="user-img">
+      <transition appear name="animate__animated router-animation" enter-active-class="animate__zoomIn animate__delay-1s">
+        <form action="#">
 
-            <div class="input-box">
-              <input style="float: left; border:0" type="password" required placeholder="Password">
-            </div>
-            <div class="remember-forgot">
-              <label><input type="checkbox">Remember me</label>
-            </div>
-            <button type="submit" class="btn">LOG IN</button>
-            <div class="login-register">
-              <p>Don't have a account? <a @click="$router.push('Register')" class="register-link">Register</a></p>
-            </div>
-          </form>
-        </transition>
-        </div>
-   </div>
-  
+          <div class="input-box">
+            <input style="float: left; border:0" type="email" v-model="email" placeholder="Email" required>
+          </div>
+
+          <div class="input-box">
+            <input style="float: left; border:0" type="password" v-model="password" placeholder="Password" required>
+          </div>
+          <div class="remember-forgot">
+            <label><input type="checkbox">Remember me</label>
+          </div>
+          <button type="submit" class="btn" @click="goToPerfilAndVertify()">LOG IN</button>
+          <div class="login-register">
+            <p>Don't have a account? <a @click="goToRegister()" class="register-link">Register</a></p>
+          </div>
+        </form>
+      </transition>
+    </div>
+  </div>
 </template>
 
 
 <script>
-import "animate.css"; 
+import "animate.css";
 import axios from 'axios';
-
-const createUser = (username, email, password) => {
-  return axios.post('/api/users', { username, email, password });
-};
 
 
 export default {
-    name: 'Log',
+  name: 'Log',
+  data() {
+    return {
+      email: '',
+      password: ''
+    }
+  },
 
+  methods: {
+    goToPerfilAndVertify() {
+      axios.post('http://localhost:3000/Log', {
+        email: this.email,
+        password: this.password
+      }).then(response => {
+        console.log(response.data);
+        // handle response
+      }).catch(error => {
+        console.log(error);
+        // handle error
+      });
+    },
+    goToRegister() {
+      this.$router.push({
+        name: 'Register',
 
+      });
+    }
+
+  },
 };
 
 
@@ -48,7 +68,7 @@ export default {
 
 <!-- CSS -->
 <style>
-.wrapper{
+.wrapper {
   position: relative;
   width: 100%;
   height: 700px;
@@ -56,30 +76,34 @@ export default {
   border: 2px solid rgba(blue);
   border-radius: 20px;
   backdrop-filter: blur(20px);
-  box-shadow: 0 0 30px rgba(0,0,0,.5);
+  box-shadow: 0 0 30px rgba(0, 0, 0, .5);
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.wrapper .form-box{
+
+.wrapper .form-box {
   width: 50%;
   padding: 40px;
 }
-.form-box h2{
+
+.form-box h2 {
   font-size: 2em;
   color: black;
   position: relative;
   text-align: center;
   align-items: center;
 }
-.input-box{
+
+.input-box {
   position: relative;
   width: 100%;
   height: 50px;
   border-bottom: 2px solid grey;
   margin: 30px 0
 }
-.input-box bel{
+
+.input-box bel {
   position: absolute;
   top: 50%;
   left: 5px;
@@ -90,25 +114,25 @@ export default {
   pointer-events: none;
 }
 
-.register-link{
+.register-link {
   color: #b12d2db8;
-    text-decoration: none;
-    font-size: 1.0rem;
-    font-weight: bold;    
-    cursor: pointer;
-    transition: all 0.3s ease-in-out;
+  text-decoration: none;
+  font-size: 1.0rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
 }
 
-#forgot-passwd{
+#forgot-passwd {
   color: #b12d2db8;
-    text-decoration: none;
-    font-size: 0.8rem;
-    font-weight: bold;    
-    cursor: pointer;
-    transition: all 0.3s ease-in-out;
+  text-decoration: none;
+  font-size: 0.8rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
 }
 
-.btn{
+.btn {
   margin-top: 2%;
   width: 25%;
   height: 50px;
@@ -123,14 +147,14 @@ export default {
   transition: all 0.3s ease-in-out;
 }
 
-.btn:hover{
+.btn:hover {
   background-color: #b12d2dfe;
   color: cornsilk;
   box-shadow: 0 0 10px #b12d2d;
   transition-delay: 0.2s;
 }
 
-#user-img{
+#user-img {
   margin-top: 7%;
   width: 6.25rem;
   height: 6.25rem;
@@ -141,7 +165,7 @@ export default {
   transition: all 0.3s ease-in-out;
 }
 
-input{
+input {
   height: 100%;
   width: 100%;
 }

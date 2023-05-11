@@ -38,6 +38,9 @@ export default {
                 name: 'Detail',
                 params: { id: producto.id }
             });
+        },
+        addToCart(producto){
+            
         }
     },
     computed: {

@@ -23,7 +23,7 @@
                     </div>
                     <button type="submit" class="btn" @click="createUser()">Register</button>
                     <div class="login-register">
-                        <p>Already have an account?<a @click="$router.push('Log')" class="register-link">Log In</a></p>
+                        <p>Already have an account?<a @click="goToLog()" class="register-link">Log In</a></p>
                     </div>
                 </form>
             </transition>
@@ -60,7 +60,13 @@ export default {
                 // handle error
             });
             this.$router.push('/Log')
+        },
+        goToLog(){
+            this.$router.push({
+                name: 'Log',
+            })
         }
+
     }
 };
 </script>

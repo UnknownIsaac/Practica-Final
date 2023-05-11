@@ -17,7 +17,7 @@
     <ul>
       <li v-for="producto in productos" :key="producto.id">{{ producto.nombre }} - {{ producto.precio }}</li>
     </ul>
-    <button v-if="cartItems.length === 0" @click="goToProducto()">Let's pick something!</button>
+    <button v-if="cartItems.length === 0" @click="goToProducto()">Let's pick something to our cart!</button>
   </div>
 </template>
 
