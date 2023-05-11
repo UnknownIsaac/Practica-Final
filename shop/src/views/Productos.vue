@@ -1,100 +1,123 @@
 <template>
+    <select v-model="selectedCategory">
+        <option value="">All</option>
+        <option v-for="category in categories" :value="category">{{ category }}</option>
+    </select>
     <div class="product">
-        <h1>Product Page</h1>
-        <p>Welcome</p>
-
-        <div class="products-container">
-            <div v-for="producto in Productos" :key="producto.id" class="product-card">
-                <img :src="producto.imagen" alt="Product Image" class="product-image" />
-                <h2 class="product-name">{{ producto.nombre }}</h2>
-                <h2 class="product-name">{{ producto.categoria }}</h2>
-                <p class="product-description">{{ producto.descripcion }}</p>
-                <div class="product-price">{{ producto.precio }} $</div>
-                <button class="add-to-cart-button" @click="addToCart">Add to Cart</button>
-            </div>
+        <div v-for="producto in filteredProductos" :key="producto.id" class="product-card" @click="gotoDetail(producto)">
+            <!--   <img :src="producto.imagen" alt="Product Image" class="product-image" /> -->
+            <h2 class="product-name">{{ producto.nombre }}</h2>
+            <h2 class="product-name">{{ producto.categoria }}</h2>
+            <p class="product-description">{{ producto.descripcion }}</p>
+            <div class="product-price">{{ producto.precio }} $</div>
+            <button class="add-to-cart-button" @click="addToCart(producto)">Add to Cart</button>
         </div>
-
     </div>
 </template>
-
+  
+  
 <script>
-import Cart from './Cart.vue';
-import axios from 'axios';
+import Cart from "./Cart.vue";
+import axios from "axios";
+
 export default {
-    name: 'Productos',
+    name: "Productos",
     components: {
-        Cart
+        Cart,
     },
     data() {
         return {
             Productos: [],
-            cartItems: []
+            selectedCategory: "",
+            categorias: [],
         };
     },
-    addToCart(item) {
-        this.cartItems.push(item)
+    methods: {
+        gotoDetail(producto) {
+            this.$router.push({
+                name: 'Detail',
+                params: { id: producto.id }
+            });
+        },
+        addToCart(producto){
+            
+        }
     },
-
+    computed: {
+        filteredProductos() {
+            if (this.selectedCategory === "") {
+                return this.Productos;
+            } else {
+                return this.Productos.filter(
+                    (producto) => producto.categoria === this.selectedCategory
+                );
+            }
+        },
+    },
     created() {
-        axios.get('http://localhost:3000/data')
-            .then(response => {
+        axios
+            .get("http://localhost:3000/data")
+            .then((response) => {
                 this.Productos = response.data;
 
+                // create an array of unique categories from the products
+                const uniqueCategories = [...new Set(this.Productos.map((p) => p.categoria))];
+                this.categories = ["All", ...uniqueCategories];
             })
-            .catch(error => {
+            .catch((error) => {
                 console.log(error);
             });
     },
-
-
-
-
-}
+};
 </script>
+
+
 <!-- CSS -->
 <style>
 .product {
-    text-align: center;
-}
-
-.products-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    margin-top: 30px;
+}
+
+.product select {
+    padding: 20px;
+    margin-bottom: 20px;
+    font-size: 16px;
+}
+
+.product img {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.product .product-name {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.product .product-description {
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.product .product-price {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 10px;
 }
 
 .product-card {
     background-color: #fff;
+    border: 1px solid #ccc;
     border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1);
     margin: 10px;
-    padding: 20px;
-    text-align: center;
+    padding: 10px;
     width: 300px;
-}
-
-.product-image {
-    width: 200px;
-    height: 200px;
-    object-fit: contain;
-    margin-bottom: 20px;
-}
-
-.product-name {
-    font-size: 20px;
-    margin-bottom: 10px;
-}
-
-.product-description {
-    font-size: 16px;
-    margin-bottom: 20px;
-}
-
-.product-price {
-    font-size: 18px;
-    font-weight: bold;
-    margin-bottom: 20px;
 }
 
 .add-to-cart-button {
@@ -110,5 +133,29 @@ export default {
 
 .add-to-cart-button:hover {
     background-color: #00796b;
+}
+
+select {
+    padding: 6px;
+    font-size: 14px;
+    border: none;
+    border-radius: 4px;
+    background-color: #fff;
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1);
+    outline: none;
+    transition: all 0.2s ease;
+    background-image: linear-gradient(to bottom, #fff, #f2f2f2);
+    background-position: center right;
+    background-repeat: no-repeat;
+}
+
+select:hover {
+    background-position: center right 10px;
+
+}
+
+select:focus {
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.3);
+    background-position: center right 15px;
 }
 </style>

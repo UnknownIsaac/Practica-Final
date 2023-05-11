@@ -23,7 +23,7 @@
                     </div>
                     <button type="submit" class="btn" @click="createUser()">Register</button>
                     <div class="login-register">
-                        <p>Already have an account?<a @click="$router.push('Log')" class="register-link">Log In</a></p>
+                        <p>Already have an account?<a @click="goToLog()" class="register-link">Log In</a></p>
                     </div>
                 </form>
             </transition>
@@ -33,7 +33,6 @@
 
 <script>
 import axios from 'axios';
-
 export default {
     name: 'Log',
     data() {
@@ -60,13 +59,14 @@ export default {
                 console.log(error);
                 // handle error
             });
-            console.log('request body:', {
-                nombre: this.username,
-                email: this.email,
-                pass: this.password
-            });
-            this.$router.push('/log')
+            this.$router.push('/Log')
+        },
+        goToLog(){
+            this.$router.push({
+                name: 'Log',
+            })
         }
+
     }
 };
 </script>

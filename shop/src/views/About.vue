@@ -1,5 +1,5 @@
 <template>
-    <div class="about page">
+    <div class="aboutUs">
         <h1>About us</h1>
         <p>Created by Chen & Isaac</p>
     </div>

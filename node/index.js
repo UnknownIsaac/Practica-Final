@@ -35,18 +35,36 @@ router.post('/users', (req, res) => {
       console.error(error);
       res.status(500).send('Error saving user to database');
     } else {
+      console.log(results)
       res.status(200).send('User saved to database');
     }
   });
 });
 
-
-
+app.post('/Log',(req,res)=>{
+  const { email, password } = req.body;
+  console.log('req.body:',req.body);
+  const sql = `select email,pass from usuario where email='${email}'`;
+  connection.query(sql,(error,results)=>{
+    console.log('req.body:',results);
+        if(error) {res.status(500); 
+        return
+      }
+    if (password === results.pass){
+      res.redirect('/Perfil')
+      return
+    }
+    else{
+      res.status(404)
+      console.log('Pass not found')
+    }
+  })
+});
 
 connection.connect((err) => {
   connection.query('SELECT * FROM producto', (error, results) => {
-    if (err) throw err;
     console.log('Connected to MySQL database');
+    if (err) throw err;
     this.products = results;
   })
 });
@@ -57,6 +75,16 @@ app.get('/data', (req, res) => {
     res.send(results);
   });
 });
+
+app.get('/detail/:id', (req, res) => {
+  const id =req.params.id
+  connection.query('SELECT * FROM producto where producto.id='+id, (err, results) => {
+    if (err) throw err;
+    res.send(results[0]);
+  });
+});
+
+
 
 app.listen(3000, () => {
   console.log('Server started on port 3000');
