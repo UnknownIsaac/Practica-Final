@@ -13,7 +13,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // Enable CORS for all requests
 app.use(cors());
 
-app.use('/', router);
+app.use(router);
 
 
 const connection = mysql.createConnection({
@@ -25,7 +25,7 @@ const connection = mysql.createConnection({
   autocommit: true
 });
 
-router.post('/users', (req, res) => {
+router.post('/Register', (req, res) => {
   const { nombre, email, pass } = req.body;
   console.log('req.body:', req.body);
   const sql = 'INSERT INTO usuario (nombre, email, pass) VALUES (?, ?, ?)';
@@ -41,20 +41,21 @@ router.post('/users', (req, res) => {
   });
 });
 
-app.post('/Log',(req,res)=>{
+router.post('/Log', (req, res) => {
   const { email, password } = req.body;
-  console.log('req.body:',req.body);
-  const sql = `select email,pass from usuario where email=${email}`;
-  connection.query(sql,(error,results)=>{
-    console.log('req.body:',results);
-        if(error) {res.status(500); 
-        return
-      }
-    if (password === results.pass){
-      res.redirect('/Perfil')
+  console.log('req.body:', req.body);
+  const sql = `select email,pass from usuario where email='${email}'`;
+  connection.query(sql, (error, results) => {
+    console.log('result:', results);
+    if (error) {
+      res.status(500);
       return
     }
-    else{
+    console.log(password == results[0].pass)
+    if (password == results[0].pass) {
+      res.send({ redirect: '/Perfil' });
+    }
+    else {
       res.status(404)
       console.log('Pass not found')
     }
@@ -77,8 +78,8 @@ app.get('/data', (req, res) => {
 });
 
 app.get('/detail/:id', (req, res) => {
-  const id =req.params.id
-  connection.query('SELECT * FROM producto where producto.id='+id, (err, results) => {
+  const id = req.params.id
+  connection.query('SELECT * FROM producto where producto.id=' + id, (err, results) => {
     if (err) throw err;
     res.send(results[0]);
   });

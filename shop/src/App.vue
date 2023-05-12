@@ -43,7 +43,7 @@
   align-items: center;
   display: flex;
   align-items: center;
-  font-size: 25px;
+  font-size: 20px;
   height: 10%;
   background-image: linear-gradient(125deg, aqua, green, purple, pink);
   background-size: 400%;
@@ -95,7 +95,7 @@ nav ul {
 }
 
 nav li {
-  font-size: 1.5rem;
+  font-size: 1rem;
   margin: 0 10px -20px;
 }
 

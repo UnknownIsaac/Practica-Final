@@ -48,7 +48,7 @@ export default {
                 alert('Passwords do not match');
                 return;
             }
-            axios.post('http://localhost:3000/users', {
+            axios.post('http://localhost:3000/Register', {
                 nombre: this.username,
                 email: this.email,
                 pass: this.password

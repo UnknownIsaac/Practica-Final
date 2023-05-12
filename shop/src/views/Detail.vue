@@ -27,6 +27,7 @@
       axios.get('http://localhost:3000/detail/'+this.$route.params.id)
         .then(response => {
           this.Producto = response.data[0];
+          console.log(this.Producto)
         })
         .catch(error => {
           console.log(error);

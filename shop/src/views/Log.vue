@@ -47,13 +47,18 @@ export default {
         password: this.password
       }).then(response => {
         console.log(response.data);
-        // handle response
+        if (response.data.redirect) {
+          console.log(response.data.redirect)
+          this.$router.push(response.data.redirect);
+        }
+        // handle other responses
       }).catch(error => {
         console.log(error);
         // handle error
       });
-
     },
+
+
     goToRegister() {
       this.$router.push({
         name: 'Register',
