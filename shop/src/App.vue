@@ -45,7 +45,7 @@
   align-items: center;
   font-size: 20px;
   height: 10%;
-  background-image: linear-gradient(125deg, aqua, green, purple, pink);
+  background-image: linear-gradient(125deg, rgb(45, 170, 170), #23b08d, #adadad, pink);
   background-size: 400%;
   animation: bgmove 20s infinite;
 }
@@ -142,10 +142,10 @@ a:visited {
 }
 
 a:link {
-  color: white;
+  color: black;
 }
 
 a:hover {
-  color: rgba(179, 177, 177, 0.281);
+  color: rgba(8, 2, 2, 0.281);
 }
 </style>
