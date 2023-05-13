@@ -89,6 +89,15 @@ app.get('/detail/:id', (req, res) => {
   });
 });
 
+app.get('/cart/:id,',(req,res)=>{
+    const id = req.params.id
+    connection.query('SELECT * FROM producto where producto.id='+id,(err,results)=>{
+      if(err)throw err;
+      console.log(results[0])
+      res.send(results[0]);
+    })
+});
+
 
 
 app.listen(3000, () => {

@@ -42,7 +42,10 @@ export default {
         },
     
         addToCart(producto){
-            
+            this.$router.push({
+                name: 'Producto',
+                params: {id: producto.id}
+            })
         }
     },
     computed: {
