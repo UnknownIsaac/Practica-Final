@@ -8,34 +8,24 @@
         </div>
         <nav>
           <ul>
-            <button class="dropdown-btn"><router-link to="/about">About us</router-link></button>
-              <div class="dropdown-content">
-
-            </div>
-            <li class="category-menu">
-              <button class="dropdown-btn">Products</button>
-              <div class="dropdown-content">
-                <router-link to="/products/electronics">Electronics</router-link>
-                <router-link to="/products/smart-home">Smart Home</router-link>
-                <router-link to="/products/phone-devices">Phone devices</router-link>
-                <!-- Add more category links here -->
-              </div>
-            </li>
-            <li> <router-link to="/cart"><img id="log" src="..\img\cart.png" alt="?"></router-link></li>
-            <li><router-link to="/log"><img id="log" src="..\img\log.png" alt="?"></router-link></li>
+            <li><router-link to="/about">About us</router-link></li>
+            <li> <router-link to="/Productos">Product</router-link></li>
+            <li> <router-link to="/Cart"><img id="log" src="..\img\cart.png" alt="?"></router-link></li>
+            <li><router-link to="/Log"><img id="log" src="..\img\log.png" alt="?"></router-link></li>
           </ul>
+
         </nav>
       </div>
 
     </div>
-    <transition appear name="animateanimated router-animation" enter-active-class="animatefadeInUp">
+    <transition appear name="animate__animated router-animation" enter-active-class="animate__fadeInUp">
       <router-view />
     </transition>
   </div>
 </template>
+
 <style>
 @import "animate.css";
-
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -47,11 +37,33 @@
 #nav {
   background-color: #201f1f;
   color: #fff;
-  padding: 20px;
+  padding: 10px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  display: flex;
+  align-items: center;
+  font-size: 20px;
+  height: 10%;
+  background-image: linear-gradient(125deg, rgb(45, 170, 170), #23b08d, #adadad, pink);
+  background-size: 400%;
+  animation: bgmove 20s infinite;
 }
+@keyframes bgmove {
+  0% {
+    background-position: 0% 50%;
+
+  }
+
+  50% {
+    background-position: 100% 50%;
+
+  }
+  100%{
+    background-position: 0% 50%;
+  }
+}
+
 
 nav ul {
   list-style: none;
@@ -94,6 +106,10 @@ nav a {
   text-decoration: none;
 }
 
+#nav a.router-link-exact-active {
+  color: red;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -129,45 +145,7 @@ a:link {
   color: white;
 }
 
-.category-menu {
-  position: relative;
-  display: inline-block;
-}
-
-.dropdown-btn {
-  background-color: #333;
-  color: #fff;
-  padding: 10px 20px;
-  border: none;
-  cursor: pointer;
-  font-family: 'Montserrat', sans-serif;
-}
-
-.dropdown-btn:hover{
-  background-color: rgba(213, 56, 56, 0.793);
-}
-
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #f5f5f5;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
-}
-
-.dropdown-content a {
-  color: #333;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-}
-
-.dropdown-content a:hover {
-  background-color: #ddd;
-}
-
-.category-menu:hover .dropdown-content {
-  display: block;
+a:hover {
+  color: rgba(8, 2, 2, 0.281);
 }
 </style>
