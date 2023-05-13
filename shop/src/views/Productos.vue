@@ -37,8 +37,10 @@ export default {
             this.$router.push({
                 name: 'Detail',
                 params: { id: producto.id }
+                
             });
         },
+    
         addToCart(producto){
             
         }
@@ -59,10 +61,9 @@ export default {
             .get("http://localhost:3000/data")
             .then((response) => {
                 this.Productos = response.data;
-
                 // create an array of unique categories from the products
                 const uniqueCategories = [...new Set(this.Productos.map((p) => p.categoria))];
-                this.categories = ["All", ...uniqueCategories];
+                this.categories = [...uniqueCategories];
             })
             .catch((error) => {
                 console.log(error);

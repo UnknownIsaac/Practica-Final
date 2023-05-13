@@ -26,7 +26,6 @@
 
 <style>
 @import "animate.css";
-
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -38,11 +37,33 @@
 #nav {
   background-color: #201f1f;
   color: #fff;
-  padding: 20px;
+  padding: 10px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  display: flex;
+  align-items: center;
+  font-size: 20px;
+  height: 10%;
+  background-image: linear-gradient(125deg, rgb(45, 170, 170), #23b08d, #adadad, pink);
+  background-size: 400%;
+  animation: bgmove 20s infinite;
 }
+@keyframes bgmove {
+  0% {
+    background-position: 0% 50%;
+
+  }
+
+  50% {
+    background-position: 100% 50%;
+
+  }
+  100%{
+    background-position: 0% 50%;
+  }
+}
+
 
 nav ul {
   list-style: none;
@@ -125,7 +146,6 @@ a:link {
 }
 
 a:hover {
-  color: rgba(179, 177, 177, 0.281);
+  color: rgba(8, 2, 2, 0.281);
 }
-
 </style>
