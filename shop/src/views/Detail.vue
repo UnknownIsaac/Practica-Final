@@ -1,27 +1,33 @@
 <template>
-  <div class="producto_Detail" v-if="selectedItem">
-    <!-- <h2>{{ selectedItem.nombre }}</h2> -->
-    <p>{{ selectedItem.descripcion }}</p>
-    <p>{{ selectedItem.precio }} $</p>
-    <button class="add-to-cart-button" @click="addToCart(selectedItem)">Add to Cart</button>
-  </div>
-</template>
-
+    <div class="Detail">
+      <h2>{{ Productos.nombre }}</h2>
+      <p>{{ Productos.descripcion }}</p>
+      <p>{{ Productos.precio }} $</p>
+      <button class="add-to-cart-button" @click="addToCart(selectedProduct)">Add to Cart</button>
+    </div>
+  </template>
 <script>
 import axios from 'axios';
-
 export default {
   name: 'Detail',
   data() {
     return {
-      selectedItem: null
+      selectedProduct: {},
+      Productos: {}
     };
   },
+  computed: {
+    selectedProduct() {
+      const id = this.$route.params.id;
+      return this.Producto.find(p => p.id === id) || {};
+    }
+  },
   created() {
-    axios.get('http://localhost:3000/detail/' + this.$route.params.id)
+    const id = this.$route.params.id
+    axios.get('http://localhost:3000/detail/' + id)
       .then(response => {
-        this.selectedItem = response.data[0];
-        console.log(this.selectedItem);
+        this.Productos = response.data;
+        console.log(this.Producto)
       })
       .catch(error => {
         console.log(error);
@@ -35,6 +41,5 @@ export default {
 };
 </script>
   
-  <style>
-  </style>
+<style></style>
   
