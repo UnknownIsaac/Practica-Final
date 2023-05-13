@@ -1,5 +1,5 @@
 <template>
-    <div class="wrapper">
+    <div class="Register">
         <div class="form-box">
             <img src="..\..\img\logimg.png" id="user-img" alt="user-img">
             <transition appear name="animate__animated router-animation"
@@ -73,7 +73,7 @@ export default {
 
 <!-- CSS -->
 <style>
-.wrapper {
+.Register {
     position: relative;
     width: 100%;
     height: 700px;
@@ -87,7 +87,7 @@ export default {
     align-items: center;
 }
 
-.wrapper .form-box {
+.Register .form-box {
     width: 50%;
     padding: 40px;
 }
