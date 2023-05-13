@@ -142,7 +142,7 @@ a:visited {
 }
 
 a:link {
-  color: black;
+  color: white;
 }
 
 a:hover {
