@@ -79,7 +79,7 @@ app.get('/data', (req, res) => {
 
 app.get('/detail/:id', (req, res) => {
   const id = req.params.id
-  connection.query('SELECT * FROM producto where producto.id=' + id, (err, results) => {
+  connection.query('SELECT * FROM producto where producto.id='+id, (err, results) => {
     if (err) throw err;
     res.send(results[0]);
   });
