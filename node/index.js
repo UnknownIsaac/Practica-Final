@@ -13,7 +13,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // Enable CORS for all requests
 app.use(cors());
 
-app.use(router);
+
 
 
 const connection = mysql.createConnection({
@@ -53,10 +53,9 @@ router.post('/LogIn', (req, res) => {
     }
     console.log(password == results[0].pass)
     if (password == results[0].pass) {
-      console.log(password,results[0].pass)
-      console.log(Date.now())
-    // res.send({ redirect:'/Perfil' });
-    res.status(200).json({ redirect: '/Perfil' });
+      console.log(password, results[0].pass)
+      // res.send({ redirect:'/Perfil' });
+      res.status(200).json({ redirect: '/Perfil' });
     }
     else {
       res.status(404).json({ redirect: null });
@@ -82,21 +81,23 @@ app.get('/data', (req, res) => {
 
 app.get('/detail/:id', (req, res) => {
   const id = req.params.id
-  connection.query('SELECT * FROM producto where producto.id='+id, (err, results) => {
+  connection.query('SELECT * FROM producto where producto.id=' + id, (err, results) => {
     if (err) throw err;
-    console.log(results[0])
+    console.log('Detail: '+results[0])
     res.send(results[0]);
   });
 });
 
-app.get('/cart/:id,',(req,res)=>{
-    const id = req.params.id
-    connection.query('SELECT * FROM producto where producto.id='+id,(err,results)=>{
-      if(err)throw err;
-      console.log(results[0])
-      res.send(results[0]);
-    })
+app.get('/cart/:id', (req, res) => {
+  const id = req.params.id
+  connection.query('SELECT * FROM producto where producto.id=' + id, (err, results) => {
+    if (err) throw err;
+    console.log('Cart: '+results[0])
+    res.send(results[0]);
+  })
 });
+
+app.use(router);
 
 
 

@@ -35,7 +35,7 @@ const routes = [
     component: Log,
   },
   {
-    path: "/Cart",
+    path: "/Cart/:id",
     name: "Cart",
     component: Cart,
   },

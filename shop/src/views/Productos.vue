@@ -4,27 +4,26 @@
         <option v-for="category in categories" :value="category">{{ category }}</option>
     </select>
     <div class="product">
-        <div v-for="producto in filteredProductos" :key="producto.id" class="product-card" @click="gotoDetail(producto)">
+        <div v-for="producto in filteredProductos" :key="producto.id" class="product-card" >
             <!--   <img :src="producto.imagen" alt="Product Image" class="product-image" /> -->
             <h2 class="product-name">{{ producto.nombre }}</h2>
             <h2 class="product-name">{{ producto.categoria }}</h2>
             <p class="product-description">{{ producto.descripcion }}</p>
             <div class="product-price">{{ producto.precio }} $</div>
             <button class="add-to-cart-button" @click="addToCart(producto)">Add to Cart</button>
+            <p></p>
+            <button class="add-to-cart-button" @click="gotoDetail(producto)">Check Detail</button>
         </div>
+ 
     </div>
 </template>
   
   
 <script>
-import Cart from "./Cart.vue";
 import axios from "axios";
 
 export default {
     name: "Productos",
-    components: {
-        Cart,
-    },
     data() {
         return {
             Productos: [],

@@ -4,7 +4,7 @@
       <div id="nav">
         <h1 id="logo-header"><router-link to="/"><img id="logo" src="..\img\IC-logo.png" alt="?"></router-link></h1>
         <div class="search">
-          <input type="search" placeholder="Looking for something?">
+          <input type="search" v-model="search" placeholder="Looking for something?">
         </div>
         <nav>
           <ul>
@@ -23,9 +23,32 @@
     </transition>
   </div>
 </template>
+<script>
+import axios from "axios";
+export default {
+  data() {
+    return {
+      search: ''
+    };
+  },
 
+  methods: {
+    searchProducto(search) {
+      axios.post('http://localhost:3000/Search/:search', {
+        search: this.search
+      }).then(Response => {
+        console.log(Response.data);
+      }).catch(error => {
+        console.log(error);
+        // handle error
+      });
+    }
+  }
+}
+</script>
 <style>
 @import "animate.css";
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -49,6 +72,7 @@
   background-size: 400%;
   animation: bgmove 20s infinite;
 }
+
 @keyframes bgmove {
   0% {
     background-position: 0% 50%;
@@ -59,7 +83,8 @@
     background-position: 100% 50%;
 
   }
-  100%{
+
+  100% {
     background-position: 0% 50%;
   }
 }

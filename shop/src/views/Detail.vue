@@ -27,7 +27,7 @@ export default {
     axios.get('http://localhost:3000/detail/' + id)
       .then(response => {
         this.Productos = response.data;
-        console.log(this.Producto)
+        console.log(this.Productos)
       })
       .catch(error => {
         console.log(error);
