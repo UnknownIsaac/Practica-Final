@@ -25,6 +25,29 @@ const connection = mysql.createConnection({
   autocommit: true
 });
 
+app.post('/LogIn', (req, res) => {
+  const { email, password } = req.body;
+  console.log('req.body:', req.body);
+  const sql = `select email,pass from usuario where email='${email}'`;
+  connection.query(sql, (error, results) => {
+    console.log('result:', results);
+    if (error) {
+      res.status(500).json({ redirect: null });
+      return
+    }
+    console.log(password == results[0].pass)
+    if (password == results[0].pass) {
+      console.log(password, results[0].pass)
+      res.send('Yes');
+      res.redirect('/Perfil')
+    }
+    else {
+      res.status(404).json({ redirect: null });
+      console.log('Pass not found')
+    }
+  })
+});
+
 router.post('/Register', (req, res) => {
   const { nombre, email, pass } = req.body;
   console.log('req.body:', req.body);
@@ -41,28 +64,6 @@ router.post('/Register', (req, res) => {
   });
 });
 
-router.post('/LogIn', (req, res) => {
-  const { email, password } = req.body;
-  console.log('req.body:', req.body);
-  const sql = `select email,pass from usuario where email='${email}'`;
-  connection.query(sql, (error, results) => {
-    console.log('result:', results);
-    if (error) {
-      res.status(500).json({ redirect: null });
-      return
-    }
-    console.log(password == results[0].pass)
-    if (password == results[0].pass) {
-      console.log(password, results[0].pass)
-      // res.send({ redirect:'/Perfil' });
-      res.status(200).json({ redirect: '/Perfil' });
-    }
-    else {
-      res.status(404).json({ redirect: null });
-      console.log('Pass not found')
-    }
-  })
-});
 
 connection.connect((err) => {
   connection.query('SELECT * FROM producto', (error, results) => {
