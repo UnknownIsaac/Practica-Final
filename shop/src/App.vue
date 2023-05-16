@@ -8,44 +8,32 @@
         </div>
         <nav>
           <ul>
-            <li><router-link to="/about">About us</router-link></li>
-            <li> <router-link to="/Productos">Product</router-link></li>
-            <li> <router-link to="/Cart"><img id="log" src="..\img\cart.png" alt="?"></router-link></li>
-            <li><router-link to="/Log"><img id="log" src="..\img\log.png" alt="?"></router-link></li>
-          </ul>
+            <button class="dropdown-btn"><router-link to="/about">About us</router-link></button>
+              <div class="dropdown-content">
 
+            </div>
+            <li class="category-menu">
+              <button class="dropdown-btn">Products</button>
+              <div class="dropdown-content">
+                <router-link to="/products/electronics">Electronics</router-link>
+                <router-link to="/products/smart-home">Smart Home</router-link>
+                <router-link to="/products/phone-devices">Phone devices</router-link>
+                <!-- Add more category links here -->
+              </div>
+            </li>
+            <li> <router-link to="/cart"><img id="log" src="..\img\cart.png" alt="?"></router-link></li>
+            <li><router-link to="/log"><img id="log" src="..\img\log.png" alt="?"></router-link></li>
+          </ul>
         </nav>
       </div>
 
     </div>
-    <transition appear name="animate__animated router-animation" enter-active-class="animate__fadeInUp">
+    <transition appear name="animateanimated router-animation" enter-active-class="animatefadeInUp">
       <router-view />
     </transition>
   </div>
 </template>
-<script>
-import axios from "axios";
-export default {
-  data() {
-    return {
-      search: ''
-    };
-  },
 
-  methods: {
-    searchProducto(search) {
-      axios.post('http://localhost:3000/Search/:search', {
-        search: this.search
-      }).then(Response => {
-        console.log(Response.data);
-      }).catch(error => {
-        console.log(error);
-        // handle error
-      });
-    }
-  }
-}
-</script>
 <style>
 @import "animate.css";
 
@@ -89,7 +77,6 @@ export default {
   }
 }
 
-
 nav ul {
   list-style: none;
   margin: 0;
@@ -131,10 +118,6 @@ nav a {
   text-decoration: none;
 }
 
-#nav a.router-link-exact-active {
-  color: red;
-}
-
 body {
   margin: 0;
   padding: 0;
@@ -170,7 +153,45 @@ a:link {
   color: white;
 }
 
-a:hover {
-  color: rgba(8, 2, 2, 0.281);
+.category-menu {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-btn {
+  background-color: transparent;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.dropdown-btn:hover{
+  background-color: rgba(213, 56, 56, 0.793);
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f5f5f5;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: #333;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+.category-menu:hover .dropdown-content {
+  display: block;
 }
 </style>
