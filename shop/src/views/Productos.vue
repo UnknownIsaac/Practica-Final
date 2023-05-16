@@ -4,7 +4,7 @@
         <option v-for="category in categories" :value="category">{{ category }}</option>
     </select>
     <div class="product">
-        <div v-for="producto in filteredProductos" :key="producto.id" class="product-card" >
+        <div v-for="producto in filteredProductos" :key="producto.id" class="product-card">
             <!--   <img :src="producto.imagen" alt="Product Image" class="product-image" /> -->
             <h2 class="product-name">{{ producto.nombre }}</h2>
             <h2 class="product-name">{{ producto.categoria }}</h2>
@@ -14,7 +14,7 @@
             <p></p>
             <button class="add-to-cart-button" @click="gotoDetail(producto)">Check Detail</button>
         </div>
- 
+
     </div>
 </template>
   
@@ -36,16 +36,20 @@ export default {
             this.$router.push({
                 name: 'Detail',
                 params: { id: producto.id }
-                
+
             });
         },
-    
-        addToCart(producto){
-            this.$router.push({
-                name: 'Producto',
-                params: {id: producto.id}
-            })
-        }
+
+        addToCart(producto) {
+            axios.post(`http://localhost:3000/Cart/${producto.id}`)
+                .then((response) => {
+                    console.log(response.data)
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+
+        },
     },
     computed: {
         filteredProductos() {

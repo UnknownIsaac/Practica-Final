@@ -25,9 +25,6 @@ import axios from 'axios';
 
 export default {
   name: 'Cart',
-  mounted() {
-    console.log(this.$route.params.id);
-  },
   data() {
     return {
       selectedProduct: {},
@@ -42,7 +39,7 @@ export default {
   },
   created() {
     const id = this.$route.params.id;
-    axios.get('http://localhost:3000/cart/' + id)
+    axios.get('http://localhost:3000/Cart/' + id)
       .then(response => {
         this.selectedProduct = response.data;
         console.log(this.selectedProduct);

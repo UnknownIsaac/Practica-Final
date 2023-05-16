@@ -25,7 +25,7 @@ const connection = mysql.createConnection({
   autocommit: true
 });
 
-app.post('/LogIn', (req, res) => {
+app.get('/LogIn', (req, res) => {
   const { email, password } = req.body;
   console.log('req.body:', req.body);
   const sql = `select email,pass from usuario where email='${email}'`;
@@ -48,6 +48,7 @@ app.post('/LogIn', (req, res) => {
   })
 });
 
+
 router.post('/Register', (req, res) => {
   const { nombre, email, pass } = req.body;
   console.log('req.body:', req.body);
@@ -63,6 +64,42 @@ router.post('/Register', (req, res) => {
     }
   });
 });
+
+//Primero, click addcart, coger el id de producto seleccionado, ir al node/mysql, hace select*from producto where id = id,
+//resultado volver al vue. En front, utiliza el resultado. hace un inser into carrito (categoria, nombre, precio, descrip,id_producto) values (?,?,?,?,?)
+//
+app.post('/Cart/:id', (req, res) => {
+  const id = req.params.id;
+  console.log('req.body: ', req.body);
+  connection.query('SELECT id, categoria, nombre, precio, descrip FROM producto WHERE id =' + id, (err, results) => {
+    if (err) {
+      console.error(err);
+      res.status(500).send('Error querying product');
+      return;
+    }
+
+    if (results.length === 0) {
+      res.status(404).send('Product not found');
+      return;
+    }
+
+    const { id_producto, categoria, nombre, precio, descrip } = results[0];
+    const sql = 'INSERT INTO carrito (id_producto, categoria, nombre, precio, descrip) VALUES (?, ?, ?, ?, ?)';
+    const values = [id_producto, categoria, nombre, precio, descrip];
+
+    connection.query(sql, values, (error, insertResult) => {
+      if (error) {
+        console.error(error);
+        res.status(500).send('Failed to add to cart');
+      } else {
+        console.log(insertResult);
+        res.status(200).send('Added to cart');
+      }
+    });
+  });
+});
+
+
 
 
 connection.connect((err) => {
@@ -84,19 +121,11 @@ app.get('/detail/:id', (req, res) => {
   const id = req.params.id
   connection.query('SELECT * FROM producto where producto.id=' + id, (err, results) => {
     if (err) throw err;
-    console.log('Detail: '+results[0])
+    console.log('Detail: ' + results[0])
     res.send(results[0]);
   });
 });
 
-app.get('/cart/:id', (req, res) => {
-  const id = req.params.id
-  connection.query('SELECT * FROM producto where producto.id=' + id, (err, results) => {
-    if (err) throw err;
-    console.log('Cart: '+results[0])
-    res.send(results[0]);
-  })
-});
 
 app.use(router);
 

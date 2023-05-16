@@ -38,7 +38,7 @@ export default {
 
   methods: {
     goToPerfil() {
-      axios.post('http://localhost:3000/LogIn', {
+      axios.get('http://localhost:3000/LogIn', {
         email: this.email,
         password: this.password
       }).then(response => {
