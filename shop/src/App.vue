@@ -33,7 +33,29 @@
     </transition>
   </div>
 </template>
+<script>
+import axios from "axios";
+export default {
+  data() {
+    return {
+      search: ''
+    };
+  },
 
+  methods: {
+    searchProducto(search) {
+      axios.post('http://localhost:3000/Search/:search', {
+        search: this.search
+      }).then(Response => {
+        console.log(Response.data);
+      }).catch(error => {
+        console.log(error);
+        // handle error
+      });
+    }
+  }
+}
+</script>
 <style>
 @import "animate.css";
 
