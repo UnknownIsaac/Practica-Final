@@ -13,7 +13,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // Enable CORS for all requests
 app.use(cors());
 
-app.use(router);
+
 
 
 const connection = mysql.createConnection({
@@ -24,6 +24,30 @@ const connection = mysql.createConnection({
   database: 'LDM',
   autocommit: true
 });
+
+app.get('/LogIn', (req, res) => {
+  const { email, password } = req.body;
+  console.log('req.body:', req.body);
+  const sql = `select email,pass from usuario where email='${email}'`;
+  connection.query(sql, (error, results) => {
+    console.log('result:', results);
+    if (error) {
+      res.status(500).json({ redirect: null });
+      return
+    }
+    console.log(password == results[0].pass)
+    if (password == results[0].pass) {
+      console.log(password, results[0].pass)
+      res.send('Yes');
+      res.redirect('/Perfil')
+    }
+    else {
+      res.status(404).json({ redirect: null });
+      console.log('Pass not found')
+    }
+  })
+});
+
 
 router.post('/Register', (req, res) => {
   const { nombre, email, pass } = req.body;
@@ -41,26 +65,42 @@ router.post('/Register', (req, res) => {
   });
 });
 
-router.post('/Log', (req, res) => {
-  const { email, password } = req.body;
-  console.log('req.body:', req.body);
-  const sql = `select email,pass from usuario where email='${email}'`;
-  connection.query(sql, (error, results) => {
-    console.log('result:', results);
-    if (error) {
-      res.status(500);
-      return
+//Primero, click addcart, coger el id de producto seleccionado, ir al node/mysql, hace select*from producto where id = id,
+//resultado volver al vue. En front, utiliza el resultado. hace un inser into carrito (categoria, nombre, precio, descrip,id_producto) values (?,?,?,?,?)
+//
+app.post('/Cart/:id', (req, res) => {
+  const id = req.params.id;
+  console.log('req.body: ', req.body);
+  connection.query('SELECT id, categoria, nombre, precio, descrip FROM producto WHERE id =' + id, (err, results) => {
+    if (err) {
+      console.error(err);
+      res.status(500).send('Error querying product');
+      return;
     }
-    console.log(password == results[0].pass)
-    if (password == results[0].pass) {
-      res.send({ redirect: '/Perfil' });
+
+    if (results.length === 0) {
+      res.status(404).send('Product not found');
+      return;
     }
-    else {
-      res.status(404)
-      console.log('Pass not found')
-    }
-  })
+
+    const { id_producto, categoria, nombre, precio, descrip } = results[0];
+    const sql = 'INSERT INTO carrito (id_producto, categoria, nombre, precio, descrip) VALUES (?, ?, ?, ?, ?)';
+    const values = [id_producto, categoria, nombre, precio, descrip];
+
+    connection.query(sql, values, (error, insertResult) => {
+      if (error) {
+        console.error(error);
+        res.status(500).send('Failed to add to cart');
+      } else {
+        console.log(insertResult);
+        res.status(200).send('Added to cart');
+      }
+    });
+  });
 });
+
+
+
 
 connection.connect((err) => {
   connection.query('SELECT * FROM producto', (error, results) => {
@@ -79,11 +119,15 @@ app.get('/data', (req, res) => {
 
 app.get('/detail/:id', (req, res) => {
   const id = req.params.id
-  connection.query('SELECT * FROM producto where producto.id='+id, (err, results) => {
+  connection.query('SELECT * FROM producto where producto.id=' + id, (err, results) => {
     if (err) throw err;
+    console.log('Detail: ' + results[0])
     res.send(results[0]);
   });
 });
+
+
+app.use(router);
 
 
 

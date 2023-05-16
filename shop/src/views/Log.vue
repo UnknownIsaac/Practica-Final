@@ -1,27 +1,25 @@
 <template>
-  <div class="wrapper">
-    <div class="form-box">
-      <img src="..\..\img\logimg.png" id="user-img" alt="user-img">
-      <transition appear name="animate__animated router-animation" enter-active-class="animate__zoomIn animate__delay-1s">
-        <form action="#">
-
+  <div class="Log">
+    <transition appear name="animate__animated router-animation" enter-active-class="animate__zoomIn animate__delay-1s">
+      <div class="form-box">
+        <img src="..\..\img\logimg.png" id="user-img" alt="user-img">
+        <form>
           <div class="input-box">
             <input style="float: left; border:0" type="email" v-model="email" placeholder="Email" required>
           </div>
-
           <div class="input-box">
             <input style="float: left; border:0" type="password" v-model="password" placeholder="Password" required>
           </div>
           <div class="remember-forgot">
             <label><input type="checkbox">Remember me</label>
           </div>
-          <button type="submit" class="btn" @click="goToPerfilAndVertify()">LOG IN</button>
+          <button type="submit" class="btn" @click="goToPerfil()">LOG IN</button>
           <div class="login-register">
             <p>Don't have a account? <a @click="goToRegister()" class="register-link">Register</a></p>
           </div>
         </form>
-      </transition>
-    </div>
+      </div>
+    </transition>
   </div>
 </template>
 
@@ -29,8 +27,6 @@
 <script>
 import "animate.css";
 import axios from 'axios';
-
-
 export default {
   name: 'Log',
   data() {
@@ -41,28 +37,44 @@ export default {
   },
 
   methods: {
-    goToPerfilAndVertify() {
-      axios.post('http://localhost:3000/Log', {
+    goToPerfil() {
+      axios.get('http://localhost:3000/LogIn', {
         email: this.email,
         password: this.password
       }).then(response => {
         console.log(response.data);
-        if (response.data.redirect) {
-          console.log(response.data.redirect)
-          this.$router.push(response.data.redirect);
+        if (response.data == 'Yes') {
+          console.log('Lets go Perfil')
+          this.$router.push({
+            name: 'Perfil',
+          });
+          router.beforeEach(async (to, from) => {
+            if (
+              // make sure the user is authenticated
+              !isAuthenticated &&
+              // ❗️ Avoid an infinite redirect
+              to.name !== 'Log'
+            ) {
+              // redirect the user to the login page
+              return { name: 'Perfil' }
+            }
+          })
+        } else {
+          // 处理登录失败的情况，例如显示错误消息等
+          alert(error)
         }
-        // handle other responses
-      }).catch(error => {
-        console.log(error);
-        // handle error
-      });
-    },
 
+      }).
+        // handle other responses
+        catch(error => {
+          console.log(error);
+          // handle error
+        });
+    },
 
     goToRegister() {
       this.$router.push({
         name: 'Register',
-
       });
     }
 
@@ -74,7 +86,7 @@ export default {
 
 <!-- CSS -->
 <style>
-.wrapper {
+.Log {
   position: relative;
   width: 100%;
   height: 700px;
@@ -88,7 +100,7 @@ export default {
   align-items: center;
 }
 
-.wrapper .form-box {
+.Log .form-box {
   width: 50%;
   padding: 40px;
 }

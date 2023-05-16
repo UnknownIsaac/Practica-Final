@@ -4,7 +4,7 @@
       <div id="nav">
         <h1 id="logo-header"><router-link to="/"><img id="logo" src="..\img\IC-logo.png" alt="?"></router-link></h1>
         <div class="search">
-          <input type="search" placeholder="Looking for something?">
+          <input type="search" v-model="search" placeholder="Looking for something?">
         </div>
         <nav>
           <ul>
@@ -33,6 +33,7 @@
     </transition>
   </div>
 </template>
+
 <style>
 @import "animate.css";
 
@@ -70,7 +71,8 @@
     background-position: 100% 50%;
 
   }
-  100%{
+
+  100% {
     background-position: 0% 50%;
   }
 }
