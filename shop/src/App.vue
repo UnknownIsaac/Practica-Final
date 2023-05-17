@@ -4,7 +4,7 @@
       <div id="nav">
         <h1 id="logo-header"><router-link to="/"><img id="logo" src="..\img\IC-logo.png" alt="?"></router-link></h1>
         <div class="search">
-          <input type="search" v-model="search" placeholder="Looking for something?">
+          <input type="search" v-model="search" @keyup.enter="sendSearchRequest()" placeholder="Looking for something?">
         </div>
         <nav>
           <ul>
@@ -38,22 +38,27 @@ import axios from "axios";
 export default {
   data() {
     return {
+      //inicializar el variable
       search: ''
     };
   },
 
   methods: {
-    searchProducto(search) {
-      axios.post('http://localhost:3000/Search/:search', {
-        search: this.search
-      }).then(Response => {
-        console.log(Response.data);
-      }).catch(error => {
-        console.log(error);
-        // handle error
-      });
-    }
-  }
+    sendSearchRequest() {
+      axios.post('http://localhost:3000/Search', { search: this.search })
+        .then((response) => {
+          // 处理从后端返回的数据
+          console.log(response.data);
+          this.$router.push({
+                name: 'Result',
+            });
+        })
+        .catch((error) => {
+          // 处理错误
+          console.error(error);
+        });
+    },
+  },
 }
 </script>
 <style>
