@@ -13,7 +13,7 @@
           <ul>
             <li> <router-link to="/About">About us</router-link></li>
             <li class="category-menu">
-              <button class="dropdown-btn">Productos</button>
+              <button class="dropdown-btn"><router-link to="/Productos">Productos</router-link></button>
               <select class="dropdown-content" v-model="selectedCategory" @change="navigateToProductos">
                 <option value="">All</option>
                 <option v-for="category in categories" :value="category">{{ category }}</option>
