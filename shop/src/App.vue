@@ -4,7 +4,7 @@
       <div id="nav">
         <h1 id="logo-header"><router-link to="/"><img id="logo" src="..\img\IC-logo.png" alt="?"></router-link></h1>
         <div class="search">
-          <input type="search" v-model="search" placeholder="Looking for something?">
+          <input type="search" placeholder="Looking for something?">
         </div>
         <nav>
           <ul>
@@ -193,5 +193,50 @@ a:link {
 
 .category-menu:hover .dropdown-content {
   display: block;
+}
+
+@media screen and (max-width: 600px) {
+
+  .search input {
+width: 100%;
+}
+
+#nav {
+font-size: 16px;
+}
+
+#logo-header {
+margin-left: 2%;
+font-size: 1rem;
+}
+
+nav li {
+font-size: 0.8rem;
+}
+
+/* New code for @media 600px */
+#nav {
+justify-content: center;
+}
+
+#logo-header {
+display: none;
+}
+
+nav li {
+margin: 0;
+}
+
+nav ul {
+flex-direction: column;
+}
+
+.category-menu {
+display: none;
+}
+
+.search input {
+margin-bottom: 10px;
+}
 }
 </style>
