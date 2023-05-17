@@ -1,38 +1,107 @@
+<router-view>Productos</router-view>
 <template>
   <div id="app">
     <div id="header">
       <div id="nav">
-        <h1 id="logo-header"><router-link to="/"><img id="logo" src="..\img\IC-logo.png" alt="?"></router-link></h1>
+        <h1 id="logo-header">
+          <router-link to="/"><img id="logo" src="../img/IC-logo.png" alt="?"></router-link>
+        </h1>
         <div class="search">
-          <input type="search" v-model="search" placeholder="Looking for something?">
+          <input type="search" v-model="search" @keyup.enter="sendSearchRequest()" placeholder="Looking for something?">
         </div>
         <nav>
           <ul>
-            <button class="dropdown-btn"><router-link to="/about">About us</router-link></button>
-              <div class="dropdown-content">
-
-            </div>
+            <li> <router-link to="/About">About us</router-link></li>
             <li class="category-menu">
-              <button class="dropdown-btn">Products</button>
-              <div class="dropdown-content">
-                <router-link to="/products/electronics">Electronics</router-link>
-                <router-link to="/products/smart-home">Smart Home</router-link>
-                <router-link to="/products/phone-devices">Phone devices</router-link>
-                <!-- Add more category links here -->
-              </div>
+              <button class="dropdown-btn">Productos</button>
+              <select class="dropdown-content" v-model="selectedCategory" @change="navigateToProductos">
+                <option value="">All</option>
+                <option v-for="category in categories" :value="category">{{ category }}</option>
+              </select>
             </li>
-            <li> <router-link to="/cart"><img id="log" src="..\img\cart.png" alt="?"></router-link></li>
-            <li><router-link to="/log"><img id="log" src="..\img\log.png" alt="?"></router-link></li>
+            <li>
+              <router-link to="/cart"><img id="log" src="../img/cart.png" alt="?"></router-link>
+            </li>
+            <li>
+              <router-link to="/log"><img id="log" src="../img/log.png" alt="?"></router-link>
+            </li>
           </ul>
         </nav>
       </div>
-
     </div>
     <transition appear name="animateanimated router-animation" enter-active-class="animatefadeInUp">
-      <router-view />
+      <router-view :productos="filteredProductos" />
     </transition>
   </div>
 </template>
+
+<script>
+import axios from "axios";
+
+export default {
+  data() {
+    return {
+      search: "",
+      Productos: [],
+      selectedCategory: "",
+      categories: []
+    };
+  },
+
+  created() {
+    this.fetchData();
+  },
+
+  methods: {
+    fetchData() {
+      axios
+        .get("http://localhost:3000/data")
+        .then((response) => {
+          console.log(response.data);
+          this.Productos = response.data;
+          const uniqueCategories = [...new Set(this.Productos.map((p) => p.categoria))];
+          this.categories = [ ...uniqueCategories];
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+
+    sendSearchRequest() {
+      axios
+        .get("http://localhost:3000/Search", { params: { search: this.search } })
+        .then((response) => {
+          console.log(response.data);
+          this.$router.push({
+            name: "Perfil"
+          });
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    },
+
+    navigateToProductos() {
+      this.$router.push({
+        name: "Productos",
+        query: { category: this.selectedCategory }
+      });
+    }
+  },
+
+  computed: {
+    filteredProductos() {
+      if (this.selectedCategory === "") {
+        return this.Productos;
+      } else {
+        return this.Productos.filter(
+          (producto) => producto.categoria === this.selectedCategory
+        );
+      }
+    }
+  }
+};
+</script>
 
 <style>
 @import "animate.css";
@@ -167,7 +236,7 @@ a:link {
   font-family: 'Montserrat', sans-serif;
 }
 
-.dropdown-btn:hover{
+.dropdown-btn:hover {
   background-color: rgba(213, 56, 56, 0.793);
 }
 
@@ -176,7 +245,7 @@ a:link {
   position: absolute;
   background-color: #f5f5f5;
   min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
 }
 
