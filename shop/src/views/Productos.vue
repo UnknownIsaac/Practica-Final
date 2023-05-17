@@ -14,16 +14,19 @@
             <p></p>
             <button class="add-to-cart-button" @click="gotoDetail(producto)">Check Detail</button>
         </div>
-
     </div>
 </template>
   
   
 <script>
+import Cart from "./Cart.vue";
 import axios from "axios";
 
 export default {
     name: "Productos",
+    components: {
+        Cart,
+    },
     data() {
         return {
             Productos: [],
@@ -41,15 +44,8 @@ export default {
         },
 
         addToCart(producto) {
-            axios.post(`http://localhost:3000/Cart/${producto.id}`)
-                .then((response) => {
-                    console.log(response.data)
-                })
-                .catch((error) => {
-                    console.log(error);
-                });
 
-        },
+        }
     },
     computed: {
         filteredProductos() {
