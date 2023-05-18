@@ -19,27 +19,12 @@
         />
       </div>
     </div>
-    <div class="map-wrapper">
-      <div id="map"></div>
-    </div>  
   </div>
 </template>
 
 <script>
 export default {
   name: "Home",
-  mounted() {
-    this.initializeMap();
-  },
-  methods: {
-    initializeMap() {
-      // Create a new Google Map instance
-      map = new google.maps.Map(document.getElementById("map"), {
-        center: { lat: 39.59040423951755, lng: 2.610014223588809 }, 
-        zoom: 17.5,
-      });
-    },
-  },
 };
 </script>
 <!-- CSS -->
