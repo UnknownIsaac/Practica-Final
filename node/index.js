@@ -126,6 +126,22 @@ app.get('/detail/:id', (req, res) => {
   });
 });
 
+app.post('/Search/:nombre', (req, res) => {
+  const nombre = req.params.nombre
+  const search = req.body // {}=objeto , []=array 
+  const sql = 'SELECT * FROM producto WHERE producto.nombre LIKE ?';
+  const values = [`%${search}%`];
+  connection.query(sql, values, (error, results) => {
+    if (error) {
+      console.error(error);
+      res.status(500).send('Error executing search query');
+    } else {
+      res.status(200).send(results);
+    }
+  });
+});
+
+
 
 app.use(router);
 
