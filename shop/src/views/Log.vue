@@ -38,13 +38,13 @@ export default {
 
   methods: {
     goToPerfil() {
-      axios.post('http://localhost:3000/LogIn', {
-        email: this.email,
-        password: this.password
-      }).then(response => {
-        console.log(response.data);
-        if (response.data == 'Yes') {
-          console.log('Lets go Perfil')
+      // axios.post('http://localhost:3000/LogIn', {
+      //   email: this.email,
+      //   password: this.password
+      // }).then(response => {
+      //   console.log(response.data);
+      //   if (response.data == 'Yes') {
+      //     console.log('Lets go Perfil')
           this.$router.push({
             name: 'Perfil',
           });
@@ -59,17 +59,17 @@ export default {
               // return { name: 'Perfil' }
             // }
           // })
-        } else {
-          // 处理登录失败的情况，例如显示错误消息等
-          alert(error)
-        }
+      //   } else {
+      //     // 处理登录失败的情况，例如显示错误消息等
+      //     alert(error)
+      //   }
 
-      }).
-        // handle other responses
-        catch(error => {
-          console.log(error);
-          // handle error
-        });
+      // }).
+      //   // handle other responses
+      //   catch(error => {
+      //     console.log(error);
+      //     // handle error
+      //   });
     },
 
     goToRegister() {

@@ -32,6 +32,7 @@ app.post('/LogIn', (req, res) => {
   connection.query(sql, (error, results) => {
     console.log('result:', results);
     if (error) {
+      console.log(error)
       // res.status(500).json({ redirect: null });
       return
     }
