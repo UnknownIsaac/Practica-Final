@@ -38,7 +38,7 @@ export default {
 
   methods: {
     goToPerfil() {
-      axios.get('http://localhost:3000/LogIn', {
+      axios.post('http://localhost:3000/LogIn', {
         email: this.email,
         password: this.password
       }).then(response => {
@@ -48,17 +48,17 @@ export default {
           this.$router.push({
             name: 'Perfil',
           });
-          router.beforeEach(async (to, from) => {
-            if (
+          // router.beforeEach(async (to, from) => {
+            // if (
               // make sure the user is authenticated
-              !isAuthenticated &&
+              // !isAuthenticated &&
               // ❗️ Avoid an infinite redirect
-              to.name !== 'Log'
-            ) {
+              // to.name !== 'Log'
+            // ) {
               // redirect the user to the login page
-              return { name: 'Perfil' }
-            }
-          })
+              // return { name: 'Perfil' }
+            // }
+          // })
         } else {
           // 处理登录失败的情况，例如显示错误消息等
           alert(error)
