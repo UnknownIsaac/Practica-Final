@@ -95,6 +95,8 @@ export default {
   animation: bgmove 20s infinite;
 }
 
+
+
 nav ul {
   list-style: none;
   margin: 0;
