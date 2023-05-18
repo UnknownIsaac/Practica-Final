@@ -4,7 +4,7 @@
         <option v-for="category in categories" :value="category">{{ category }}</option>
     </select>
     <div class="product">
-        <div v-for="producto in filteredProductos" :key="producto.id" class="product-card">
+        <div v-for=" producto in filteredProductos" :key="producto.id" class="product-card">
             <img :src="producto.img" alt="Product Image" class="product-image" />
             <h2 class="product-name">{{ producto.nombre }}</h2>
             <h2 class="product-name">{{ producto.categoria }}</h2>
@@ -39,12 +39,14 @@ export default {
             this.$router.push({
                 name: 'Detail',
                 params: { id: producto.id }
-
             });
         },
 
         addToCart(producto) {
-
+            this.$router.push({
+                name: 'Cart',
+                params: { id: producto.id }
+            })
         }
     },
     computed: {
@@ -60,7 +62,7 @@ export default {
     },
     created() {
         axios
-            .get("http://localhost:3000/data")
+            .get("http://localhost:3000/Producto")
             .then((response) => {
                 this.Productos = response.data;
                 // create an array of unique categories from the products
