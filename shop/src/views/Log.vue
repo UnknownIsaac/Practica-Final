@@ -86,13 +86,13 @@ export default {
 
 <!-- CSS -->
 <style>
+
 .Log {
   position: relative;
   width: 100%;
   height: 700px;
   background-color: transparent;
   border: 2px solid rgba(blue);
-  border-radius: 20px;
   backdrop-filter: blur(20px);
   box-shadow: 0 0 30px rgba(0, 0, 0, .5);
   display: flex;
@@ -118,7 +118,7 @@ export default {
   width: 100%;
   height: 50px;
   border-bottom: 2px solid grey;
-  margin: 30px 0
+  margin: 30px 0;
 }
 
 .input-box bel {
