@@ -11,13 +11,10 @@
         </div>
         <nav>
           <ul>
-            <li> <router-link to="/About">About us</router-link></li>
+          
             <li class="category-menu">
+              <button class="dropdown-btn"><router-link to="/About">About us</router-link></button>
               <button class="dropdown-btn"><router-link to="/Productos">Productos</router-link></button>
-              <select class="dropdown-content" v-model="selectedCategory" @change="navigateToProductos">
-                <option value="">All</option>
-                <option v-for="category in categories" :value="category">{{ category }}</option>
-              </select>
             </li>
             <li>
               <router-link to="/cart"><img id="log" src="../img/cart.png" alt="?"></router-link>
@@ -44,28 +41,14 @@ export default {
       search: "",
       Productos: [],
       selectedCategory: "",
-      categories: []
+      categories: [],
+      map: null, // 声明 map 变量并初始化为 null
     };
   },
 
-  created() {
-    this.fetchData();
-  },
+
 
   methods: {
-    fetchData() {
-      axios
-        .get("http://localhost:3000/data")
-        .then((response) => {
-          console.log(response.data);
-          this.Productos = response.data;
-          const uniqueCategories = [...new Set(this.Productos.map((p) => p.categoria))];
-          this.categories = [ ...uniqueCategories];
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    },
 
     sendSearchRequest() {
       axios
