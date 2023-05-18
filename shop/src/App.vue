@@ -11,7 +11,7 @@
         </div>
         <nav>
           <ul>
-          
+
             <li class="category-menu">
               <button class="dropdown-btn"><router-link to="/About">About us</router-link></button>
               <button class="dropdown-btn"><router-link to="/Productos">Productos</router-link></button>
@@ -90,25 +90,9 @@ export default {
   align-items: center;
   font-size: 20px;
   height: 10%;
-  background-image: linear-gradient(125deg, rgb(45, 170, 170), #23b08d, #adadad, pink);
+  background-image: linear-gradient(125deg, rgb(31, 167, 167), #23b08d, #adadad, pink);
   background-size: 400%;
   animation: bgmove 20s infinite;
-}
-
-@keyframes bgmove {
-  0% {
-    background-position: 0% 50%;
-
-  }
-
-  50% {
-    background-position: 100% 50%;
-
-  }
-
-  100% {
-    background-position: 0% 50%;
-  }
 }
 
 nav ul {
@@ -162,10 +146,6 @@ body {
   box-sizing: border-box;
 }
 
-#header {
-  box-shadow: 10px 0px 10px;
-}
-
 #logo-header {
   margin-left: 5%;
   text-decoration: none;
@@ -205,14 +185,6 @@ a:link {
   background-color: rgba(213, 56, 56, 0.793);
 }
 
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #f5f5f5;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-  z-index: 1;
-}
 
 .dropdown-content a {
   color: #333;
@@ -232,45 +204,45 @@ a:link {
 @media screen and (max-width: 600px) {
 
   .search input {
-width: 100%;
-}
+    width: 100%;
+  }
 
-#nav {
-font-size: 16px;
-}
+  #nav {
+    font-size: 16px;
+  }
 
-#logo-header {
-margin-left: 2%;
-font-size: 1rem;
-}
+  #logo-header {
+    margin-left: 2%;
+    font-size: 1rem;
+  }
 
-nav li {
-font-size: 0.8rem;
-}
+  nav li {
+    font-size: 0.8rem;
+  }
 
-/* New code for @media 600px */
-#nav {
-justify-content: center;
-}
+  /* New code for @media 600px */
+  #nav {
+    justify-content: center;
+  }
 
-#logo-header {
-display: none;
-}
+  #logo-header {
+    display: none;
+  }
 
-nav li {
-margin: 0;
-}
+  nav li {
+    margin: 0;
+  }
 
-nav ul {
-flex-direction: column;
-}
+  nav ul {
+    flex-direction: column;
+  }
 
-.category-menu {
-display: none;
-}
+  .category-menu {
+    display: none;
+  }
 
-.search input {
-margin-bottom: 10px;
-}
+  .search input {
+    margin-bottom: 10px;
+  }
 }
 </style>
