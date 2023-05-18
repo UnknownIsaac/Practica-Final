@@ -2,47 +2,46 @@
   <div class="Cart">
     <h1>Shopping Cart</h1>
     <ul>
-      <div>
-        <h2 class="product-name"> {{ selectedProduct.nombre }} </h2>
-        <h2 class="product-name"> {{ selectedProduct.precio }}$ </h2>
+      <div class="product">
+        <div v-for=" producto in Productos" :key="producto.id" class="product-card">
+          <h2 class="product-name"> {{ producto.nombre }} </h2>
+          <h2 class="product-name"> {{ producto.precio }}$ </h2>
+        </div>
       </div>
     </ul>
-    <div v-if="cartItems.length === 0">Your cart is empty.</div>
+    <div v-if="Productos.length === 0">Your cart is empty.</div>
     <div v-else>
       <div>Total: {{ cartTotal }} $</div>
       <div><button @click="checkout()">Checkout</button></div>
     </div>
-
-    <ul>
-      <li v-for="producto in productos" :key="producto.id">{{ producto.nombre }} - {{ producto.precio }}</li>
-    </ul>
-    <button v-if="cartItems.length === 0" @click="goToProducto()">Let's pick something to our cart!</button>
+    <button v-if="Productos.length === 0" @click="goToProducto()">Let's pick something to our cart!</button>
   </div>
 </template>
 
 <script>
 import axios from 'axios';
-
 export default {
   name: 'Cart',
   data() {
     return {
       selectedProduct: {},
-      productos: [],
-      cartItems: []
+      Productos: [],
     }
   },
   computed: {
     cartTotal() {
-      return this.cartItems.reduce((total, item) => total + item.precio, 0);
+      return this.Productos.reduce((total, producto) => total + producto.precio, 0);
     }
   },
   created() {
-    const id = this.$route.params.id;
-    axios.get('http://localhost:3000/Cart/' + id)
-      .then(response => {
-        this.selectedProduct = response.data;
-        console.log(this.selectedProduct);
+    const id = this.$route.params.id
+    axios
+      .get('http://localhost:3000/Cart/' + id)
+      .then((response) => {
+        this.Productos = response.data;
+        // create an array of unique categories from the products
+        // const uniqueCategories = [...new Set(this.Productos.map((p) => p.categoria))];
+        // this.categories = [...uniqueCategories];
       })
       .catch((error) => {
         console.log(error);
@@ -56,7 +55,7 @@ export default {
     },
     checkout() {
       alert('Thank you for your purchase!');
-      this.cartItems = [];
+      axios.post('http://localhost:3000/Checkout')
     }
   },
 };

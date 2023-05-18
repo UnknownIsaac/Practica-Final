@@ -25,21 +25,22 @@ const connection = mysql.createConnection({
   autocommit: true
 });
 
-app.get('/LogIn', (req, res) => {
+
+app.post('/LogIn', (req, res) => {
   const { email, password } = req.body;
   console.log('req.body:', req.body);
   const sql = `select email,pass from usuario where email='${email}'`;
   connection.query(sql, (error, results) => {
     console.log('result:', results);
     if (error) {
-      res.status(500).json({ redirect: null });
+      console.log(error)
+      // res.status(500).json({ redirect: null });
       return
     }
     console.log(password == results[0].pass)
     if (password == results[0].pass) {
       console.log(password, results[0].pass)
       res.send('Yes');
-      res.redirect('/Perfil')
     }
     else {
       res.status(404).json({ redirect: null });
@@ -68,7 +69,7 @@ router.post('/Register', (req, res) => {
 //Primero, click addcart, coger el id de producto seleccionado, ir al node/mysql, hace select*from producto where id = id,
 //resultado volver al vue. En front, utiliza el resultado. hace un inser into carrito (categoria, nombre, precio, descrip,id_producto) values (?,?,?,?,?)
 //
-app.post('/Cart/:id', (req, res) => {
+app.get('/Cart/:id', (req, res) => {
   const id = req.params.id;
   console.log('req.body: ', req.body);
   connection.query('SELECT id, categoria, nombre, precio, descrip FROM producto WHERE id =' + id, (err, results) => {
@@ -77,27 +78,65 @@ app.post('/Cart/:id', (req, res) => {
       res.status(500).send('Error querying product');
       return;
     }
-
     if (results.length === 0) {
       res.status(404).send('Product not found');
       return;
     }
-
     const { id_producto, categoria, nombre, precio, descrip } = results[0];
-    const sql = 'INSERT INTO carrito (id_producto, categoria, nombre, precio, descrip) VALUES (?, ?, ?, ?, ?)';
-    const values = [id_producto, categoria, nombre, precio, descrip];
-
+    const sql = 'INSERT INTO carrito (categoria, nombre, precio, descrip, id_producto) VALUES (?, ?, ?, ?, ?)';
+    const values = [ categoria, nombre, precio, descrip,id_producto,];
     connection.query(sql, values, (error, insertResult) => {
       if (error) {
         console.error(error);
         res.status(500).send('Failed to add to cart');
       } else {
         console.log(insertResult);
-        res.status(200).send('Added to cart');
+        connection.query('SELECT * FROM carrito', (err, results) => {
+          if (err) {
+            console.error(err);
+            res.status(500).send('Error querying cart');
+          } else {
+            res.status(200).json(results);
+          }
+        });
       }
     });
   });
 });
+
+
+app.post('/Checkout', (req, res) => {
+  const sql1 = 'DROP TABLE IF EXISTS carrito';
+  const sql2 = `CREATE TABLE IF NOT EXISTS carrito (
+    id INT unsigned auto_increment PRIMARY KEY,
+    categoria varchar(50) not null,
+    nombre VARCHAR(100),
+    precio DECIMAL(10, 2),
+    descrip TEXT,
+    cantidad int unsigned,
+    id_producto int unsigned,
+    foreign key(id_producto) references producto(id)
+  )`;
+  
+  connection.query(sql1, (error, result1) => {
+    if (error) {
+      console.error(error);
+      res.status(500).send('Error dropping carrito table');
+      return;
+    }
+
+    connection.query(sql2, (error, result2) => {
+      if (error) {
+        console.error(error);
+        res.status(500).send('Error creating carrito table');
+        return;
+      }
+
+      res.status(200).send('Carrito table created');
+    });
+  });
+});
+
 
 
 
@@ -110,12 +149,13 @@ connection.connect((err) => {
   })
 });
 
-app.get('/data', (req, res) => {
+app.get('/Producto', (req, res) => {
   connection.query('SELECT * FROM producto', (err, results) => {
     if (err) throw err;
     res.send(results);
   });
 });
+
 
 app.get('/detail/:id', (req, res) => {
   const id = req.params.id

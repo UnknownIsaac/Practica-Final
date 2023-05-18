@@ -34,9 +34,12 @@ export default {
       });
   },
   methods: {
-    addToCart(product) {
-      console.log(product);
-    }
+    addToCart(producto) {
+            this.$router.push({
+                name: 'Cart',
+                params: { id: producto.id }
+            })
+        }
   }
 };
 </script>

@@ -17,7 +17,7 @@
               <button class="dropdown-btn"><router-link to="/Productos">Productos</router-link></button>
             </li>
             <li>
-              <router-link to="/cart"><img id="log" src="../img/cart.png" alt="?"></router-link>
+              <router-link to="/Cart/:id"><img id="log" src="../img/cart.png" alt="?"></router-link>
             </li>
             <li>
               <router-link to="/log"><img id="log" src="../img/log.png" alt="?"></router-link>
@@ -56,33 +56,14 @@ export default {
         .then((response) => {
           console.log(response.data);
           this.$router.push({
-            name: "Perfil"
+            name: "Producto"
           });
         })
         .catch((error) => {
           console.error(error);
         });
     },
-
-    navigateToProductos() {
-      this.$router.push({
-        name: "Productos",
-        query: { category: this.selectedCategory }
-      });
-    }
   },
-
-  computed: {
-    filteredProductos() {
-      if (this.selectedCategory === "") {
-        return this.Productos;
-      } else {
-        return this.Productos.filter(
-          (producto) => producto.categoria === this.selectedCategory
-        );
-      }
-    }
-  }
 };
 </script>
 
