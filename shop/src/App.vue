@@ -20,7 +20,7 @@
               <router-link to="/Cart/:id"><img id="log" src="../img/cart.png" alt="?"></router-link>
             </li>
             <li>
-              <router-link to="/log"><img id="log" src="../img/log.png" alt="?"></router-link>
+              <router-link to="/log"><img id="log" src="../img/log123.png" alt="?"></router-link>
             </li>
           </ul>
         </nav>
