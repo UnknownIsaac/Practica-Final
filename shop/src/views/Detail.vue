@@ -1,7 +1,8 @@
 <template>
     <div class="Detail">
+      <img :src="Productos.foto" alt="Product Image" class="product-image" />
       <h2>{{ Productos.nombre }}</h2>
-      <p>{{ Productos.descripcion }}</p>
+      <p>{{ Productos.descrip }}</p>
       <p>{{ Productos.precio }} $</p>
       <button class="add-to-cart-button" @click="addToCart(selectedProduct)">Add to Cart</button>
     </div>

@@ -5,7 +5,7 @@
     </select>
     <div class="product">
         <div v-for=" producto in filteredProductos" :key="producto.id" class="product-card">
-            <img :src="producto.img" alt="Product Image" class="product-image" />
+            <!-- <img :src="producto.img" alt="Product Image" class="product-image" /> -->
             <h2 class="product-name">{{ producto.nombre }}</h2>
             <h2 class="product-name">{{ producto.categoria }}</h2>
             <p class="product-description">{{ producto.descripcion }}</p>
