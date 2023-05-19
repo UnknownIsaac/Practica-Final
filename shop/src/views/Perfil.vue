@@ -21,8 +21,12 @@
   
 <style scoped>
 .perfil {
+    height: 100%;
     padding: 20px;
     text-align: center;
+    background-image: linear-gradient(125deg, rgb(31, 167, 167), #23b08d, #adadad, pink);
+    background-size: 400%;
+    animation: bgmove 20s infinite;
 }
 
 .perfil-header {
@@ -40,7 +44,7 @@
 }
 
 .perfil-content {
-    display: flex;
+    display: block;
     align-items: center;
     animation: slideInLeft 1s;
 }
@@ -115,6 +119,19 @@
     }
 }
 
+@keyframes bgmove {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
 </style>
   
 
