@@ -25,11 +25,13 @@
 
 
 <script>
+//Importar los modulos
 import "animate.css";
 import axios from 'axios';
 //export default entender como un import de router(podemos encontrar en el router.js)
 export default {
   name: 'Log',
+  //Inicializar los varibales
   data() {
     return {
       email: '',
@@ -38,6 +40,7 @@ export default {
   },
 
   methods: {
+    //metodo para ir al perfil y hace comparacion en el back(aunque estan comentado el codigo porque hay error)
     goToPerfil() {
       // axios.post('http://localhost:3000/LogIn', {
       //   email: this.email,
@@ -73,6 +76,7 @@ export default {
       //   });
     },
 
+    //Dirigir a la vista Registro
     goToRegister() {
       this.$router.push({
         name: 'Register',
