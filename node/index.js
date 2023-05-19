@@ -163,9 +163,7 @@ app.post('/Checkout', (req, res) => {
 
 
 
-/*Lo comento a ver si funciona. Si deja de funcionar, dejarlo descomentao
-
-//Aqui no hay ni post ni get. Solo es un conexión al base de datos 
+//Conectar al base de datos y enviar valores de producto al front
 connection.connect((err) => {
   connection.query('SELECT * FROM producto', (error, results) => {
     console.log('Connected to MySQL database');
@@ -173,14 +171,13 @@ connection.connect((err) => {
     this.products = results;
   })
 });
-
+//Maneja get request,  hace la consulta para sacar todos valores de la tabla producto y los envia al front
 app.get('/Producto', (req, res) => {
   connection.query('SELECT * FROM producto', (err, results) => {
     if (err) throw err;
     res.send(results);
   });
 });
-*/
 
 
 //Manejar el request get de front(detalle y contien un id como parametro)
