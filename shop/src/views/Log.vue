@@ -13,7 +13,7 @@
           <div class="remember-forgot">
             <label><input type="checkbox">Remember me</label>
           </div>
-          <button type="submit" class="btn" @click="goToPerfil()">LOG IN</button>
+          <button type="submit" class="btn" @click="goToPerfil({ id: 19 })">LOG IN</button>
           <div class="login-register">
             <p>Don't have a account? <a @click="goToRegister()" class="register-link">Register</a></p>
           </div>
@@ -35,63 +35,68 @@ export default {
   data() {
     return {
       email: '',
-      password: ''
+      password: '',
+      usuario: {}
     }
   },
 
   methods: {
     //metodo para ir al perfil y hace comparacion en el back(aunque estan comentado el codigo porque hay error)
-    goToPerfil() {
-      // axios.post('http://localhost:3000/LogIn', {
-      //   email: this.email,
-      //   password: this.password
-      // }).then(response => {
-      //   console.log(response.data);
-      //   if (response.data == 'Yes') {
-      //     console.log('Lets go Perfil')
-          this.$router.push({
-            name: 'Perfil',
-          });
-          // router.beforeEach(async (to, from) => {
-            // if (
-              // make sure the user is authenticated
-              // !isAuthenticated &&
-              // ❗️ Avoid an infinite redirect
-              // to.name !== 'Log'
-            // ) {
-              // redirect the user to the login page
-              // return { name: 'Perfil' }
-            // }
-          // })
-      //   } else {
-      //     // 处理登录失败的情况，例如显示错误消息等
-      //     alert(error)
-      //   }
-
-      // }).
-      //   // handle other responses
-      //   catch(error => {
-      //     console.log(error);
-      //     // handle error
-      //   });
+    goToPerfil(usuario) {
+      this.$router.push({
+        name: 'Perfil',
+        params: { id: usuario.id }
+      });
     },
 
-    //Dirigir a la vista Registro
-    goToRegister() {
-      this.$router.push({
-        name: 'Register',
-      });
-    }
 
+    // axios.post('http://localhost:3000/LogIn', {
+    //   email: this.email,
+    //   password: this.password
+    // }).then(response => {
+    //   console.log(response.data);
+    //   if (response.data == 'Yes') {
+    //     console.log('Lets go Perfil')
+
+    // router.beforeEach(async (to, from) => {
+    // if (
+    // make sure the user is authenticated
+    // !isAuthenticated &&
+    // ❗️ Avoid an infinite redirect
+    // to.name !== 'Log'
+    // ) {
+    // redirect the user to the login page
+    // return { name: 'Perfil' }
+    // }
+    // })
+    //   } else {
+    //     // 处理登录失败的情况，例如显示错误消息等
+    //     alert(error)
+    //   }
+
+    // }).
+    //   // handle other responses
+    //   catch(error => {
+    //     console.log(error);
+    //     // handle error
+    //   });
   },
-};
+
+  //Dirigir a la vista Registro
+  goToRegister() {
+    this.$router.push({
+      name: 'Register',
+    });
+  }
+
+}
+  ;
 
 
 </script>
 
 <!-- CSS -->
 <style>
-
 .Log {
   position: relative;
   width: 100%;

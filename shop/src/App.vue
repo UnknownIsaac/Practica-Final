@@ -56,7 +56,7 @@ export default {
         .then((response) => {
           console.log(response.data);
           this.$router.push({
-            name: "Reslt"
+            name: "Result"
           });
         })
         .catch((error) => {
