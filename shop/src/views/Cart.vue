@@ -13,7 +13,7 @@
     <div v-else>
       <div class="cart-total">Total: {{ cartTotal }} $</div>
       <div class="cart-actions">
-        <button class="checkout-button" @click="checkout()">Checkout</button>
+        <button class="checkout-button" @click="checkout()"><router-link to="/Cart/:id">Checkout</router-link></button>
       </div>
     </div>
     <button v-if="Productos.length === 0" class="pick-button" @click="goToProducto()">Let's pick something for our cart!</button>
@@ -67,7 +67,7 @@ export default {
         name: 'Product',
       });
     },
-    //Metodo checkout, hace un request post al node. Allí está toda la parte lógica
+    //Metodo checkout, hace un request post al node. Alli esta toda la parte de logica
     checkout() {
       alert('Thank you for your purchase!');
       axios.post('http://localhost:3000/Checkout')
