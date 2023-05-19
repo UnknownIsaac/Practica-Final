@@ -19,7 +19,8 @@
                     </div>
 
                     <div class="input-box">
-                        <input style="float: left; border:0" type="password" v-model="repeatPassword" required  placeholder="Repeat Password">
+                        <input style="float: left; border:0" type="password" v-model="repeatPassword" required
+                            placeholder="Repeat Password">
                     </div>
                     <button type="submit" class="btn" @click="createUser()">Register</button>
                     <div class="login-register">
@@ -33,8 +34,10 @@
 
 <script>
 import axios from 'axios';
+//export default entender como un import de router(podemos encontrar en el router.js)
 export default {
     name: 'Log',
+    //Inicializar los variables
     data() {
         return {
             username: '',
@@ -42,26 +45,35 @@ export default {
             password: ''
         };
     },
+    //Metodos
     methods: {
+        //Metodo para crear el usuario 
         createUser() {
+            //Compara el input de password y repeatePassword si son iguales, si no. Salga una alerta que dice no son iguales y hace un return(reinicia la pagina)
             if (this.password !== this.repeatPassword) {
                 alert('Passwords do not match');
                 return;
             }
+            //Post request al node backend, La parte logica esta todas en el node backend
             axios.post('http://localhost:3000/Register', {
+                //Envia esos 3 variables al node backend y los maneja alli. 
                 nombre: this.username,
                 email: this.email,
                 pass: this.password
             }).then(response => {
-                console.log(response.data);
                 // handle response
+                console.log(response.data);
+
             }).catch(error => {
-                console.log(error);
                 // handle error
+                console.log(error);
+
             });
+            //Dirigir a la vista de log
             this.$router.push('/Log')
         },
-        goToLog(){
+        //Dirigir a la vista de log
+        goToLog() {
             this.$router.push({
                 name: 'Log',
             })

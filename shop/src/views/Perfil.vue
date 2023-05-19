@@ -1,28 +1,62 @@
 <template>
     <div class="perfil">
         <div class="perfil-header">
-            <!-- 标题和描述 -->
+            <!-- Titulo y descripcion -->
             <h2 class="perfil-title">User Perfil</h2>
-            <p class="perfil-description">Welcome over here to your own perfil</p>
+            <p class="perfil-description">Welcome here to your own Perfil!!!</p>
         </div>
         <div class="perfil-content">
-            <!-- 用户信息内容 -->
+            <!-- Contenido -->
             <div class="perfil-avatar">
                 <img src="../../img/earth.png" alt="用户头像" />
             </div>
             <div class="perfil-details">
-                <p class="perfil-name">John Doe</p>
-                <p class="perfil-email">johndoe@gmail.com</p>
+                <p class="perfil-name">{{ usuario.nombre }}</p>
+                <p class="perfil-email">{{ usuario.email }}</p>
                 <p class="perfil-bio">Super VIP client</p>
             </div>
         </div>
     </div>
 </template>
+
+<script>
+import axios from 'axios';
+//export default entender como un import de router(podemos encontrar en el router.js)
+export default {
+    name: 'Perfil',
+    data() {
+        return {
+            usuario: {},
+
+        }
+    },
+
+    created() {
+        // Aconseguir el id de usuario
+        const id = '19';
+        // Get request al node backend
+        axios.get('http://localhost:3000/usuario/' + id)
+            .then((response) => {
+                this.usuario = response.data;
+                console.log(this.usuario);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    },
+}
+
+
+</script>
   
 <style scoped>
 .perfil {
+    height: 100%;
     padding: 20px;
     text-align: center;
+    background-image: linear-gradient(125deg, rgb(31, 167, 167), #23b08d, #adadad, pink);
+    background-size: 400%;
+    animation: bgmove 20s infinite;
 }
 
 .perfil-header {
@@ -40,7 +74,7 @@
 }
 
 .perfil-content {
-    display: flex;
+    display: block;
     align-items: center;
     animation: slideInLeft 1s;
 }
@@ -115,14 +149,21 @@
     }
 }
 
+@keyframes bgmove {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
 </style>
   
 
 
 
-<script>
-import axios from 'axios';
-export default {
-    name: 'Perfil'
-}
-</script>
