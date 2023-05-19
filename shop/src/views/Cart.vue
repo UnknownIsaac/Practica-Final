@@ -21,40 +21,53 @@
 </template>
 
 <script>
+//Importar axios 
 import axios from 'axios';
+//export default entender como un import de router(podemos encontrar en el router.js)
 export default {
   name: 'Cart',
+   //Aqui inicializamos las variables
   data() {
     return {
       selectedProduct: {},
       Productos: [],
     }
   },
+  //Para hacer calculos y actualizar automaticamente el valor
   computed: {
     cartTotal() {
       return this.Productos.reduce((total, producto) => total + producto.precio, 0);
     }
   },
+  //Metodo creted, una vez que instancia de vue ya sido creado. Metodo created es el primero metodo que lo ejecuta. 
   created() {
+    //Constante para guardar el valor de id para luego lo envia al backend(node)
     const id = this.$route.params.id
+    //axios get request al node backend
     axios
       .get('http://localhost:3000/Cart/' + id)
       .then((response) => {
+        //this.Productos es un array de front. Recibir todos los valores que viene el backend y lo meta al Productos[]
         this.Productos = response.data;
-        // create an array of unique categories from the products
+        /*create an array of unique categories from the products
         // const uniqueCategories = [...new Set(this.Productos.map((p) => p.categoria))];
         // this.categories = [...uniqueCategories];
+        */
       })
+      //Control de errores 
       .catch((error) => {
         console.log(error);
       });
   },
+  //Metodos 
   methods: {
+    //Un metodo para ir a la vista Producto 
     goToProducto() {
       this.$router.push({
         name: 'Product',
       });
     },
+    //Metodo checkout, hace un request post al node. Allí está toda la parte lógica
     checkout() {
       alert('Thank you for your purchase!');
       axios.post('http://localhost:3000/Checkout')
