@@ -34,13 +34,16 @@
 </template>
 
 <script>
+//Importar los modulos 
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
-
+//Importar libreria
 library.add(fas);
 
+//export default entender como un import de router(podemos encontrar en el router.js)
 export default {
+  //Aqui inicializamos las variables
   data() {
     return {
       map: null,
@@ -50,7 +53,18 @@ export default {
   mounted() {
     this.initializeMap();
   },
+
+  //Los metodos
   methods: {
+     /*
+     loadGoogleMapsAPI()是用来加载Google Maps API。它创建了一个<script>元素，并将其添加到HTML文档的头部。
+     script.src属性指定了Google Maps API的URL，其中包含你的API密钥（需要替换为你自己的有效API密钥）和回调函数initMap。
+     当脚本加载完成时，Promise将被解析（resolve），表示Google Maps API已加载完成。 如果加载出错，Promise将被拒绝（reject）。
+
+     Es para cargar el google map API, crea un elemento script y lo añadir al head de html doc. 
+     script.src atributo indica el url de Google map api, incluye el api pass y return function initMap
+     Cuando el script completa la carga, el Promise va ser resolvido para presentar el API ya esta cargada. Si hay error, el Promise va ser denegada.
+    */
     loadGoogleMapsAPI() {
       return new Promise((resolve, reject) => {
         const script = document.createElement('script');
@@ -60,6 +74,14 @@ export default {
         document.head.appendChild(script);
       });
     },
+    /*
+    initializeMap()是在Google Maps API加载完成后调用的初始化地图的函数。它使用google.maps.Map构造函数创建一个新的地图对象，
+    并将其绑定到具有特定ID（"map"）的HTML元素上。center属性指定了地图的中心坐标（纬度和经度），zoom属性指定了初始缩放级别
+
+    Es un funcion para que cuando el api ya esta cargado. Lo calla para inicializar la mapa. Utiliza el constructor para crear un nuevo objeto de mapa
+    y lo enlace a un elemento html que tiene un id especifico. 
+    El atributo center indica el locacion central de la mapa y el atributo  zoom para el nivel principio de zoom. 
+    */
     initializeMap() {
       this.map = new google.maps.Map(document.getElementById('map'), {
         center: { lat: 39.59040423951755, lng: 2.610014223588809 },
@@ -74,11 +96,13 @@ export default {
       });
     },
   },
+  //Un componente para iconos
   components: {
     FontAwesomeIcon,
   },
 };
 </script>
+
 
 <style scoped>
 .aboutUs {
