@@ -70,7 +70,7 @@ export default {
         //Request get al node backend 
         axios.get("http://localhost:3000/Producto")
             .then((response) => {
-                //this.Productos es un array de front. Recibir todos los valores que viene el backend y lo meta al Productos[]
+                //this.Productos es un array de front. Recibir todos los valores que viene del backend y lo meta al Productos[]
                 this.Productos = response.data;
                 // create an array of unique categories from the products
                 const uniqueCategories = [...new Set(this.Productos.map((p) => p.categoria))];

@@ -45,7 +45,7 @@ const routes = [
     component: Detail,
   },
   {
-    path: "/Perfil",
+    path: "/Perfil/:id",
     name: "Perfil",
     component: Perfil,
   }

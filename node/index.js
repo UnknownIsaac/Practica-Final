@@ -179,6 +179,18 @@ app.get('/Producto', (req, res) => {
   });
 });
 
+//maneja get request, hace la consulta para tener el valor de usuario
+app.get('/usuario/:id', (req, res) => {
+  const id = req.params.id; // 获取URL中的用户ID
+  // 执行参数化查询
+  connection.query('SELECT * FROM usuario WHERE usuario.id = ?', [id], (err, results) => {
+    if (err) throw err;
+    else {
+      console.log(results);
+      res.send(results[0]);
+    }
+  });
+});
 
 //Manejar el request get de front(detalle y contien un id como parametro)
 app.get('/detail/:id', (req, res) => {
@@ -195,7 +207,7 @@ app.get('/detail/:id', (req, res) => {
 
 //Manejar el request post de front (Search, esta en app.vue)
 app.post('/Search/:nombre', (req, res) => {
-    //Crear un constante nombre(back.const) para guardar el valor de nombre(front.param)
+  //Crear un constante nombre(back.const) para guardar el valor de nombre(front.param)
   const nombre = req.params.nombre
   const search = req.body // {}=objeto , []=array 
   const sql = 'SELECT * FROM producto WHERE producto.nombre LIKE ?';
