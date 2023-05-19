@@ -9,15 +9,20 @@
 <script>
 //Importar los modulos
 import axios from 'axios';
+import Cart from "./Cart.vue";
 //export default entender como un import de router(podemos encontrar en el router.js)
 export default {
   name: 'Detail',
+  components: {
+        Cart,
+    },
   //Inicializar varibales
   data() {
     return {
       selectedProduct: {},
       Productos: {}
     };
+    
   },
   //Para hacer calculos 
   computed: {

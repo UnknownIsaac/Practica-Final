@@ -19,6 +19,7 @@
   
   
 <script>
+//Importar los modulos
 import Cart from "./Cart.vue";
 import axios from "axios";
 //export default entender como un import de router(podemos encontrar en el router.js)
@@ -27,6 +28,7 @@ export default {
     components: {
         Cart,
     },
+    //Inicializar los variables
     data() {
         return {
             Productos: [],
@@ -34,14 +36,16 @@ export default {
             categorias: [],
         };
     },
+    //Metodos
     methods: {
+        //Dirigir a la vista detail y lleva un parametro(id)
         gotoDetail(producto) {
             this.$router.push({
                 name: 'Detail',
                 params: { id: producto.id }
             });
         },
-
+        //Añadir el producto seleccionado al carrito 
         addToCart(producto) {
             this.$router.push({
                 name: 'Cart',
@@ -49,6 +53,7 @@ export default {
             })
         }
     },
+    //Metodo para separar los productos por categoria
     computed: {
         filteredProductos() {
             if (this.selectedCategory === "") {
@@ -60,15 +65,18 @@ export default {
             }
         },
     },
+    //Metodo creted, una vez que instancia de vue ya sido creado. Metodo created es el primero metodo que lo ejecuta. 
     created() {
-        axios
-            .get("http://localhost:3000/Producto")
+        //Request get al node backend 
+        axios.get("http://localhost:3000/Producto")
             .then((response) => {
+                //this.Productos es un array de front. Recibir todos los valores que viene el backend y lo meta al Productos[]
                 this.Productos = response.data;
                 // create an array of unique categories from the products
                 const uniqueCategories = [...new Set(this.Productos.map((p) => p.categoria))];
                 this.categories = [...uniqueCategories];
             })
+            //Control de errores
             .catch((error) => {
                 console.log(error);
             });
