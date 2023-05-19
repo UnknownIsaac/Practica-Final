@@ -36,6 +36,7 @@
 import axios from "axios";
 //export default entender como un import de router(podemos encontrar en el router.js)
 export default {
+  //Inicializar los variables 
   data() {
     return {
       search: "",
@@ -47,16 +48,15 @@ export default {
   },
 
 
-
+  //Metodos
   methods: {
-
+    //Enviar un get request al node backend para manejarlo. Lleva un parametro(nombre)
     sendSearchRequest() {
-      axios
-        .get("http://localhost:3000/Search", { params: { search: this.search } })
+      axios.get("http://localhost:3000/Search", { params: { search: this.search } })
         .then((response) => {
           console.log(response.data);
           this.$router.push({
-            name: "Producto"
+            name: "Reslt"
           });
         })
         .catch((error) => {
