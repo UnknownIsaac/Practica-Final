@@ -34,7 +34,7 @@
 
 <script>
 import axios from "axios";
-
+//export default entender como un import de router(podemos encontrar en el router.js)
 export default {
   data() {
     return {
