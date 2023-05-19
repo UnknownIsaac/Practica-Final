@@ -80,17 +80,19 @@ export default {
     //     console.log(error);
     //     // handle error
     //   });
+
+    //Dirigir a la vista Registro
+    goToRegister() {
+      this.$router.push({
+        name: 'Register',
+      });
+    }
   },
 
-  //Dirigir a la vista Registro
-  goToRegister() {
-    this.$router.push({
-      name: 'Register',
-    });
-  }
+
 
 }
-  ;
+
 
 
 </script>
