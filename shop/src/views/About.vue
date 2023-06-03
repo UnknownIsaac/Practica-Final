@@ -115,6 +115,7 @@ export default {
 }
 
 .aboutUs-Header {
+  position: absolute,top;
   text-align: center;
   padding: 20px;
   background-color: #f5f5f5;
@@ -150,7 +151,7 @@ export default {
 }
 
 .content {
-  position: absolute;
+  position: absolute,bottom;
   bottom: 0;
   left: 0;
   width: 100%;
